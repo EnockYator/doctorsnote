@@ -34,8 +34,8 @@ update or add button rendered conditionally depending on if the user clicks the 
 
 ## Installation
 Clone the repository:
-   ```bash
-   git clone https://github.com/example/project.git
+   ```bash```
+   git clone https://github.com/example/project.git 
 
 
 # Getting Started with Create React App
