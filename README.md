@@ -39,7 +39,7 @@ the user clicks the edit button in the table of items.
 ## Installation
 Clone the repository:
    ```bash
-   git clone https://github.com/example/project.git 
+   git clone https://github.com/EnockYator/Shopping-List.git 
 
    ```
 
