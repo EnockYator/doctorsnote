@@ -4,7 +4,7 @@
 ![image](./src/assets/images/shopping-list.png)
 
 ## Description
-This is a shopping list application that has a section for \ 
+This is a shopping list application that has a section for \
 displaying the total number of items in the list, and total price. \
 It also has a form that allows adding new items to the list or \
 updating an existing item. The form has a cancel button and \
