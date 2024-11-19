@@ -38,8 +38,10 @@ the user clicks the edit button in the table of items.
 
 ## Installation
 Clone the repository:
-   ```bash```
+   ```bash
    git clone https://github.com/example/project.git 
+
+   ```
 
 
 # Getting Started with Create React App
