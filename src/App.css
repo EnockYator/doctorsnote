@@ -1,0 +1,24 @@
+/* css variables */
+:root {
+    --text-color: #20232a;
+    --primary-color: #007acc;
+    --accent-color: #f0f0f0;
+    --secondary-color: #6c757d;
+    --background-color: #ffffff;
+    --border-color: #e0e0e0;   
+}
+
+
+
+/* css rest for consistent defaults */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
