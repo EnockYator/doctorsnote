@@ -15,20 +15,20 @@ the user clicks the edit button in the table of items.
 
 ## React Concepts Used
 1. ### Hooks
-    #### - useState()
-    For managing item state
+    - useState()
+        For managing item state
  
-    #### - useReducer()
-    For managing different states of form inputs
+    - useReducer()
+        For managing different states of form inputs
 
-    #### - useCallback()
-    For memoizing functions
+    - useCallback()
+        For memoizing functions
 
-    #### - useEffect 
-    For checking if the edit button is clicked
+    - useEffect 
+        For checking if the edit button is clicked
 
-    #### - useMemo
-    For memoizing the value returned from functions
+    - useMemo
+        For memoizing the value returned from functions
 
 ## Features
 - Easy to use
