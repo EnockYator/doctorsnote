@@ -4,10 +4,12 @@
 ![image](./src/assets/images/shopping-list.png)
 
 ## Description
-This is a shopping list application that has a section for displaying the total number of items in the list, and total price.
-It also has a form that allows adding new items to the list or
-updating an existing item. The form has a cancel button and 
-update or add button rendered conditionally depending on if the user clicks the edit button in the table of items.
+This is a shopping list application that has a section for \ 
+displaying the total number of items in the list, and total price. \
+It also has a form that allows adding new items to the list or \
+updating an existing item. The form has a cancel button and \
+update or add button rendered conditionally depending on if \
+the user clicks the edit button in the table of items.
 
 ## React Concepts Used
 1. ### Hooks
