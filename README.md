@@ -1,7 +1,7 @@
 # Shopping-List
 
 ## User Interface
-![image](/home/enock/Pictures/shopping-list.png)
+![image](./src/assets/images/shopping-list.png)
 
 ## Description
 This is a shopping list application that has a section for displaying the total number of items in the list, and total price.
@@ -11,19 +11,19 @@ update or add button rendered conditionally depending on if the user clicks the 
 
 ## React Concepts Used
 1. ### Hooks
-    #### useState()
+    #### - useState()
     For managing item state
  
-    #### useReducer()
+    #### - useReducer()
     For managing different states of form inputs
 
-    #### useCallback()
+    #### - useCallback()
     For memoizing functions
 
-    #### useEffect 
+    #### - useEffect 
     For checking if the edit button is clicked
 
-    #### useMemo
+    #### - useMemo
     For memoizing the value returned from functions
 
 ## Features
