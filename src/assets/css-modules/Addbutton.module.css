@@ -1,0 +1,19 @@
+.addbutton{
+    width: 50px;
+    height: 30px;
+    background-color: var(--button-bg-color);
+    color: var(--button-color);
+    border-radius: 100px;
+    border: none;
+    position: absolute;
+    bottom: 70px;
+    right: 30px;
+    cursor: pointer;
+}
+@media screen and (min-width: 480px) {
+    .addbutton{
+        width: 100px;
+        font-size: 1em;
+        right: 50px;
+    }
+}

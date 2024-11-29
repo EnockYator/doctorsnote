@@ -1,0 +1,14 @@
+.app{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+}
+.header{
+    position: sticky;
+    width: 100%;
+}
+.main{
+    display: flex;
+    overflow-y: hidden;
+}
