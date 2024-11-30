@@ -4,10 +4,13 @@ import style from './../../assets/css-modules/Addtodo.module.css'
 function AddTodoCard({onClose}) {
     return (
         <div className={style.notecard} tabIndex="0">
-            <div className={style.close}>
-                <button onClick={onClose}><i className='ri-close-line'></i></button>
+            <div className={style.header}>
+                <h2 className={style.heading}>Add To-Do</h2>
+                <div className={style.close}>
+                    <button onClick={onClose}><i className='ri-close-line'></i></button>
+                </div>
             </div>
-            <h2 className={style.heading}>Add To-Do</h2>
+            
             <div className={style.inputarea}>
                 <input 
                     type="text"
