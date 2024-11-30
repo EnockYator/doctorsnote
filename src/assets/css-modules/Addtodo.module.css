@@ -1,25 +1,29 @@
 .notecard{
-    padding: 5px;
-    width: 98%;
+    padding: 15px 5px;
+    width: 90%;
     margin: 70px auto;
     height: 150px !important;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    background-color: grey;
+    background-color: var(--secondary-bg-color);
    
     
 }
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
 .close{
-    align-self: flex-end;
-    margin-right: 10px;
     margin-bottom: 8px;
 }
 .heading{
-    width: 100%;
+    width: 80%;
     text-align: center;
     padding: 3px;
-    background-color: var(--secondary-bg-color);
+    background-color: rgb(173, 173, 173);
+    color: rgb(0, 0, 255);
     margin-bottom: 10px;
     font-size: 1.1em;
 }
@@ -29,19 +33,25 @@
     border: none;
     border-radius: 5px;
 }
+.close button:hover{
+    background-color: grey;
+    color: white;
+}
 .inputarea{
-    width: 100%;
+    margin: auto;
+    width: 90%;
     height: 100%;
 }
 .inputarea input{
     width: 100%;
     height: 28px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     letter-spacing: 0.5px;
     font-size: 1em;
     font-weight: 500px !important;
     border: none;
     padding: 5px;
+    margin: 10px auto;
 }
 .inputarea input:focus, .textarea:focus{
     outline: none;
