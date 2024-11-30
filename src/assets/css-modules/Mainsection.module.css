@@ -11,8 +11,8 @@
 }
 .search{
     width: 90%;
-    height: 40px;
-    margin: auto;
+    height: fit-content;
+    margin: 2px auto 8px;
     position: relative;
 }
 .searchbox{
@@ -31,7 +31,7 @@
     list-style: none;
     width: 100%;
     height: 100%;
-    padding: 0 10px 300px 10px;
+    padding: 5px 10px 200px 10px;
     align-content: flex-start;
     overflow-y: scroll;
 }
@@ -44,7 +44,7 @@
     justify-content: space-between;
     background-color: var(--secondary-bg-color);
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 6px 10px;
     margin-bottom: 8px;
 }
 .title{
@@ -54,7 +54,7 @@
 }
 .time{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 
 @media screen and (min-width: 480px) {
