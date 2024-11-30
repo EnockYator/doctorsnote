@@ -1,10 +1,10 @@
 .notecard{
     padding: 5px;
-    height: 80%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    background-color: gray;
+    background-color: var(--secondary-bg-color);
    
     
 }
@@ -29,9 +29,10 @@
 }
 .inputarea input{
     width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 0.5px;
-    font-size: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 0.1px;
+    font-size: 1.0em;
+    font-weight: 600;
     font-weight: 500px !important;
     border: none;
     padding: 5px;
@@ -47,9 +48,9 @@
     resize: none;
     border: none;
     font-size: 0.9em;
-    word-spacing: -0.5px;
-    letter-spacing: 0.5px;
-    font-family: Arial, Helvetica, sans-serif;
+    word-spacing: -0.9px;
+    letter-spacing: 0.2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
 
