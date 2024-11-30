@@ -2,7 +2,6 @@
     width: 100%;
     height: 100%;
     margin-top: 1px;
-    padding: 0 5px 5px 5px;
 }
 .active{
     height: 100vh;
@@ -12,12 +11,12 @@
 .search{
     width: 90%;
     height: fit-content;
-    margin: 2px auto 8px;
+    margin: 2px auto 4px;
     position: relative;
 }
 .searchbox{
     width: 100%;
-    padding: 6px 10px;
+    padding: 5px 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 0.9em;
     letter-spacing: 0.5px;
@@ -51,10 +50,12 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 0.9em;
     font-weight: 600;
+    color: var(--secondary-color);
 }
 .time{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 0.8em;
+    color: var(--secondary-color);
 }
 
 @media screen and (min-width: 480px) {
