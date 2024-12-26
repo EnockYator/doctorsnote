@@ -17,14 +17,18 @@ function CheckAuth({ isAuthenticated, user, children }) {
     return <Navigate to="/auth/login" />;
   }
 
-  // Redirect admin to respective pages if they're at public pages
-  if (isAuthenticated && user?.role === "admin" && location.pathname.includes("/")) {
-    return <Navigate to="/admin/dashboard" />;
-  }
-
-  // Redirect users to respective pages if they're at public pages
-  if (isAuthenticated && user?.role === "user" && location.pathname.includes("/")) {
-    return <Navigate to="/shop/home" />;
+  // Redirect all users to respective pages if they're at public pages
+  if (isAuthenticated && (user?.role === "customer" || user?.role === "doctor" || user?.role === "admin") && 
+      location.pathname.includes("/")) {
+    if (user?.role === "customer") {
+      return <Navigate to="/shop/home" />;
+    }
+    if (user?.role === "doctor") {
+      return <Navigate to="/doctor/dashboard" />;
+    }
+    if (user?.role === "admin") {
+      return <Navigate to="/admin/dashboard" />;
+    }
   }
 
   // Redirect authenticated users to respective pages if they're at login or register
@@ -32,18 +36,25 @@ function CheckAuth({ isAuthenticated, user, children }) {
       (location.pathname.includes("/login") || location.pathname.includes("/register"))) {
     if (user?.role === "admin") {
       return <Navigate to="/admin/dashboard" />;
-    } else {
+    } if (user?.role === "customer"){
       return <Navigate to="/shop/home" />;
+    } if (user?.role === "doctor"){
+      return <Navigate to="/doctor/dashboard" />;
     }
   }
 
-  // Unauthorized access of normal users to admin pages (redirect to home)
-  if (isAuthenticated && user?.role === "user" && location.pathname.includes("/admin")) {
-    return <Navigate to="/shop/home" />;
+  // Unauthorized access of customers and doctors to admin pages
+  if (isAuthenticated && (user?.role === "customer" || user?.role === "doctor") && location.pathname.includes("/admin")) {
+    if (user?.role === "customer") {
+      return <Navigate to="/shop/home" />;
+    } 
+    if (user?.role === "doctor"){
+      return <Navigate to="/doctor/dashboard" />;
+    }
   }
 
-  // Unauthorized access of admin to shop-view pages (redirect to admin dashboard)
-  if (isAuthenticated && user?.role === "admin" && location.pathname.includes("/shop")) {
+  // Unauthorized access of admin to customer-view and doctor-view pages (redirect to admin dashboard)
+  if (isAuthenticated && user?.role === "admin" && (location.pathname.includes("/shop") || location.pathname.includes("/doctor"))) {
     return <Navigate to="/admin/dashboard" />;
   }
 

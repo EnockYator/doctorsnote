@@ -10,12 +10,16 @@ import AdminProducts from './pages/admin-view/products'
 import AdminOrders from './pages/admin-view/orders'
 import AdminFeatures from './pages/admin-view/features'
 import AdminDashboard from './pages/admin-view/dashboard'
-import ShoppingLayout from './components/shopping-view/layout'
 import NotFound from './pages/not-found'
-import ShoppingHome from './pages/shopping-view/home'
-import ShoppingListing from './pages/shopping-view/listing'
-import ShoppingCheckout from './pages/shopping-view/checkout'
-import ShoppingAccount from './pages/shopping-view/account'
+import DoctorDashboard from './pages/doctor-view/dashboard'
+import DoctorLayout from './components/doctor-view.jsx/layout'
+import DoctorListing from './pages/doctor-view/listing'
+import DoctorCheckout from './pages/doctor-view/checkout'
+import DoctorAccount from './pages/doctor-view/account'
+import CustomerAccount from './pages/customer-view/account'
+import CustomerCheckout from './pages/customer-view/checkout'
+import CustomerLayout from './components/customer-view.jsx/layout'
+import CustomerListing from './pages/customer-view/listing'
 import CheckAuth from './components/common/check-auth'
 import { Toaster } from './components/ui/toaster'
 import { useSelector } from 'react-redux';
@@ -23,10 +27,12 @@ import Contact from './pages/guest-view/contact'
 import About from './pages/guest-view/about'
 import TermsOfService from './pages/guest-view/terms-of-service'
 import Index from './pages/guest-view/index'
+import CustomerHome from './pages/customer-view/home'
 
 
 function App() {
   // Access Redux state to get isAuthenticated and user data
+  //const isAuthenticated = true;
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
@@ -35,7 +41,7 @@ function App() {
       <Toaster />
       <Routes>
       
-      {/* public route */}
+      {/* public route for guest visitors*/}
       <Route path='/' element={
           <GuestLayout/>
       }>
@@ -63,15 +69,26 @@ function App() {
         <Route path='dashboard' element={<AdminDashboard />}></Route>
       </Route>
 
-      {/* shopping route */}
-      <Route path='/shop' element={
-        <CheckAuth isAuthenticated={isAuthenticated} user={user}><ShoppingLayout /></CheckAuth>
+      {/* doctor route */}
+      <Route path='/doctor' element={
+        <CheckAuth isAuthenticated={isAuthenticated} user={user}><DoctorLayout /></CheckAuth>
       }>
-        <Route path='home' element={<ShoppingHome />}></Route>
-        <Route path='listing' element={<ShoppingListing />}></Route>
-        <Route path='checkout' element={<ShoppingCheckout />}></Route>
-        <Route path='account' element={<ShoppingAccount />}></Route>
+        <Route path='dashboard' element={<DoctorDashboard />}></Route>
+        <Route path='listing' element={<DoctorListing />}></Route>
+        <Route path='checkout' element={<DoctorCheckout />}></Route>
+        <Route path='account' element={<DoctorAccount />}></Route>
       </Route>
+
+      {/* customer route */}
+      <Route path='/shop' element={
+        <CheckAuth isAuthenticated={isAuthenticated} user={user}><CustomerLayout /></CheckAuth>
+      }>
+        <Route path='home' element={<CustomerHome />}></Route>
+        <Route path='listing' element={<CustomerListing />}></Route>
+        <Route path='checkout' element={<CustomerCheckout />}></Route>
+        <Route path='account' element={<CustomerAccount />}></Route>
+      </Route>
+
         <Route path='*' element={<NotFound />}></Route>
       </Routes>
     </div>
