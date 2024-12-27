@@ -2,6 +2,9 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import MedicalTeamImage from "./../../assets/images/medical-team.jpg"
+import MedicalBgImage from "./../../assets/images/med.jpg"
+
 
 
 const Home = () => {
@@ -27,27 +30,57 @@ const Home = () => {
         <>
 
         {/* Hero Section */}
-        <main className="flex flex-1 flex-col items-center text-center py-12 bg-gradient-to-b from-blue-50 to-gray-50">
-                <h2 className="text-3xl font-extrabold text-gray-800 mb-4 px-4">
-                    Simplify Your Medical Notes
+        <main
+        className="relative flex flex-1 flex-col items-center text-center pt-12 w-full"
+        style={{
+            backgroundImage: `url(${MedicalBgImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}
+    >
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-transparent opacity-60 z-0"></div>
+        {/* Content */}
+            <div className="relative z-10 max-w-4xl px-6 py-12">
+                <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-md">
+                    Trusted Digital Medical Notes
                 </h2>
-                <p className="text-gray-600 text-base max-w-3xl mb-8 px-4">
-                    DoctorsNote empowers you to securely request and manage your medical notes, 
-                    including sick leave certifications, signed digitally by certified doctors. 
-                    Save time and focus on what matters most.
+                <p className="text-white text-lg md:text-xl mb-8 px-4 drop-shadow-sm">
+                    Seamlessly request and manage your medical certifications with ease.  
+                    Designed for security, speed, and accuracy.
                 </p>
-                <div className="flex space-x-3">
-                    <Link to="auth/login">
-                        <Button className="h-9 px-2 text-sm">Get Started</Button>
+                <p className="text-gray-200 text-base max-w-3xl mb-8 px-4 hidden md:block drop-shadow-sm">
+                    DoctorsNote empowers you to securely request and manage your medical notes,  
+                    including sick leave certifications, signed digitally by certified doctors.  
+                    Saves time and focus on what matters most.
+                </p>
+                <div className="flex justify-center space-x-3">
+                    <Link to="auth/register">
+                        <Button className="h-10 px-4 text-sm bg-white text-blue-800 shadow-md hover:shadow-lg hover:text-white">
+                            Get Started
+                        </Button>
                     </Link>
                     <Link to="/about">
-                        <Button variant="outline" className="h-9 px-2 text-sm">Learn More</Button>
+                    <Button className="h-10 px-4 text-sm bg-white text-blue-800 shadow-md hover:shadow-lg hover:text-white">
+                            Learn More
+                        </Button>
                     </Link>
                 </div>
-            </main>
+            </div>
+        
+            {/* Decorative Image Section */}
+            <div className="relative z-10 md:w-3/4">
+                <img
+                    src={MedicalTeamImage}
+                    alt="Medical Team"
+                    className="shadow-lg md:rounded-lg max-h-[500px] object-cover mx-auto"
+                />
+            </div>
+        </main>
+
 
             {/* Features Section */}
-            <section className="py-12 bg-gray-100">
+            <section className="py-12 bg-gray-100 md:mt-6">
                 <div className="max-w-7xl mx-auto px-6">
                     <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">
                         Why Choose DoctorsNote?
@@ -78,11 +111,7 @@ const Home = () => {
                             description="Get your medical notes quickly and without unnecessary delays."
                             icon="⚡"
                         />
-                        <Feature
-                            title="Reliable"
-                            description="Certified doctors ensure authenticity for every medical note."
-                            icon="✅"
-                        />
+                        
                     </div>
                 </div>
             </section>
