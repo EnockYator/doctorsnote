@@ -8,57 +8,42 @@ import { Navigate, useLocation } from "react-router-dom";
  * @param {component} children - the components to be rendered if the conditions are met
  * @returns {component} - the components to be rendered if conditions are met
  */
+
+
 function CheckAuth({ isAuthenticated, user, children }) {
   const location = useLocation();
 
-  // Redirect unauthorized users to auth pages if they're not at login or register
-  if (!isAuthenticated && 
-      !(location.pathname.includes("/login") || location.pathname.includes("/register"))) {
-    return <Navigate to="/auth/login" />;
-  }
-
-  // Redirect all users to respective pages if they're at public pages
-  if (isAuthenticated && (user?.role === "customer" || user?.role === "doctor" || user?.role === "admin") && 
-      location.pathname.includes("/")) {
-    if (user?.role === "customer") {
-      return <Navigate to="/shop/home" />;
-    }
-    if (user?.role === "doctor") {
-      return <Navigate to="/doctor/dashboard" />;
-    }
-    if (user?.role === "admin") {
-      return <Navigate to="/admin/dashboard" />;
+  // Redirect unauthenticated users to login
+  if (!isAuthenticated) {
+    if (!location.pathname.includes("/login") && !location.pathname.includes("/register")) {
+      return <Navigate to="/auth/login" />;
     }
   }
 
-  // Redirect authenticated users to respective pages if they're at login or register
-  if (isAuthenticated && 
-      (location.pathname.includes("/login") || location.pathname.includes("/register"))) {
-    if (user?.role === "admin") {
-      return <Navigate to="/admin/dashboard" />;
-    } if (user?.role === "customer"){
-      return <Navigate to="/shop/home" />;
-    } if (user?.role === "doctor"){
-      return <Navigate to="/doctor/dashboard" />;
+  // Redirect authenticated users from public or auth pages
+  if (
+    isAuthenticated &&
+    (location.pathname === "/" || location.pathname.includes("/login") || location.pathname.includes("/register"))
+  ) {
+    if (user?.role === "customer") return <Navigate to="/shop/home" replace />;
+    if (user?.role === "doctor") return <Navigate to="/doctor/dashboard" replace />;
+    if (user?.role === "admin") return <Navigate to="/admin/dashboard" replace />;
+  }
+
+  // Restrict unauthorized access for specific roles
+  if (isAuthenticated) {
+    if (user?.role === "customer" && location.pathname.includes("/doctor")) {
+      return <Navigate to="/shop/home" replace />;
+    }
+    if (user?.role === "doctor" && location.pathname.includes("/shop")) {
+      return <Navigate to="/doctor/dashboard" replace />;
+    }
+    if (user?.role === "admin" && (location.pathname.includes("/shop") || location.pathname.includes("/doctor"))) {
+      return <Navigate to="/admin/dashboard" replace />;
     }
   }
 
-  // Unauthorized access of customers and doctors to admin pages
-  if (isAuthenticated && (user?.role === "customer" || user?.role === "doctor") && location.pathname.includes("/admin")) {
-    if (user?.role === "customer") {
-      return <Navigate to="/shop/home" />;
-    } 
-    if (user?.role === "doctor"){
-      return <Navigate to="/doctor/dashboard" />;
-    }
-  }
-
-  // Unauthorized access of admin to customer-view and doctor-view pages (redirect to admin dashboard)
-  if (isAuthenticated && user?.role === "admin" && (location.pathname.includes("/shop") || location.pathname.includes("/doctor"))) {
-    return <Navigate to="/admin/dashboard" />;
-  }
-
-  // Normal flow (render the child components if conditions are met)
+  // Render child components if all conditions pass
   return <>{children}</>;
 }
 

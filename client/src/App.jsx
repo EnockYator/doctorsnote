@@ -26,7 +26,7 @@ import { useSelector } from 'react-redux';
 import Contact from './pages/guest-view/contact'
 import About from './pages/guest-view/about'
 import TermsOfService from './pages/guest-view/terms-of-service'
-import Index from './pages/guest-view/index'
+import IndexPage from './pages/guest-view'
 import CustomerHome from './pages/customer-view/home'
 
 
@@ -35,6 +35,11 @@ function App() {
   //const isAuthenticated = true;
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
+
+  console.log(`isAuthenticated: ${isAuthenticated}`);
+  console.log(`user role: ${JSON.stringify(user?.role)}`);
+  console.log(`token: ${JSON.stringify(user?.token)}`);
+  console.log(`username: ${JSON.stringify(user?.username)}`);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -45,7 +50,7 @@ function App() {
       <Route path='/' element={
           <GuestLayout/>
       }>
-        <Route path='/' element={<Index />}></Route>
+        <Route path='/' element={<IndexPage />}></Route>
         <Route path='contact' element={<Contact />}></Route>
         <Route path='about' element={<About />}></Route>
         <Route path="terms-of-service" element={<TermsOfService />}></Route>
