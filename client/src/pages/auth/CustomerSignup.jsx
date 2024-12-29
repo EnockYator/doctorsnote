@@ -39,7 +39,7 @@ function AuthRegister() {
       toast({
         title: "Validation Error",
         description: validationError,
-        className: "bg-toastError text-white max-w-md h-16 fixed top-2 left-1/2fixed top-2 left-1/2 transform -translate-x-1/2 z-50",
+        className: "bg-toastError text-white max-w-md h-16 z-50",
         duration: 3000,
       });
       return;
@@ -51,7 +51,7 @@ function AuthRegister() {
       toast({
         title: "Success",
         description: result.message, // Message from backend registerUser endpoint
-        className: "bg-toastSuccess  text-white max-w-md h-16 fixed top-2 left-1/2fixed top-2 left-1/2 transform -translate-x-1/2 z-50",
+        className: "bg-toastSuccess  text-white max-w-md h-16 z-50",
         duration: 3000,
       });
       // Redirect to login page
@@ -60,7 +60,7 @@ function AuthRegister() {
       toast({
         title: "Failed",
         description: error.message || "An unexpected error occurred.",
-        className: "bg-toastError  text-white max-w-md h-16 fixed top-2 left-1/2fixed top-2 left-1/2 transform -translate-x-1/2 z-50",
+        className: "bg-toastError  text-white max-w-md h-16 z-50",
         duration: 3000,
       });
     } finally {
@@ -71,18 +71,9 @@ function AuthRegister() {
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight text-foreground">
           Create an Account
         </h1>
-        <p className="mt-2">
-          Already have an account?
-          <Link
-            className="font-medium text-primary hover:underline ml-2"
-            to="/auth/login"
-          >
-            Login
-          </Link>
-        </p>
       </div>
       <CommonForm
         formControls={registerFormControls}
@@ -92,7 +83,17 @@ function AuthRegister() {
         onSubmit={onSubmit}
         disabled={isLoading} // Disable form while loading
       />
+      <p className="mt-2 text-center">
+          Already have an account?
+          <Link
+            className="font-medium text-blue-900 hover:underline ml-2"
+            to="/auth/login"
+          >
+            Login
+          </Link>
+        </p>
     </div>
+
   );
 }
 

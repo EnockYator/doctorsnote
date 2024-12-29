@@ -20,7 +20,7 @@ const Home = () => {
     );
     
     const Testimonial = ({ name, feedback }) => (
-        <div className="p-4 bg-gray-50 shadow rounded">
+        <div className="p-4 bg-gray-100 shadow-md rounded">
             <p className="text-gray-600 italic mb-2 text-sm">&quot;{feedback}&quot;</p>
             <h5 className="text-base font-bold text-gray-800">- {name}</h5>
         </div>
@@ -31,7 +31,7 @@ const Home = () => {
 
         {/* Hero Section */}
         <main
-        className="relative flex flex-1 flex-col items-center text-center pt-12 w-full"
+        className="relative mt-[52px] flex flex-1 flex-col items-center text-center pt-12 w-full"
         style={{
             backgroundImage: `url(${MedicalBgImage})`,
             backgroundSize: 'cover',
@@ -41,8 +41,8 @@ const Home = () => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-transparent opacity-60 z-0"></div>
         {/* Content */}
-            <div className="relative z-10 max-w-4xl px-6 py-12">
-                <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-md">
+            <div className="relative  max-w-4xl px-6 pt-2 md:my-12 pb-6">
+                <h2 className="text-2xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-md">
                     Trusted Digital Medical Notes
                 </h2>
                 <p className="text-white text-lg md:text-xl mb-8 px-4 drop-shadow-sm">
@@ -73,7 +73,7 @@ const Home = () => {
                 <img
                     src={MedicalTeamImage}
                     alt="Medical Team"
-                    className="shadow-lg md:rounded-lg max-h-[500px] object-cover mx-auto"
+                    className="shadow-lg md:rounded-lg max-h-[400px] object-cover mx-auto"
                 />
             </div>
         </main>
@@ -82,7 +82,7 @@ const Home = () => {
             {/* Features Section */}
             <section className="py-12 bg-gray-100 md:mt-6">
                 <div className="max-w-7xl mx-auto px-6">
-                    <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">
+                    <h3 className="text-xl md:text-2xl font-bold text-blue-900 text-center mb-8">
                         Why Choose DoctorsNote?
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -119,7 +119,7 @@ const Home = () => {
             {/* Testimonials Section */}
             <section className="py-12 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
-                    <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">
+                    <h3 className="text-2xl font-bold text-blue-900 text-center mb-8">
                         What Our Users Say
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

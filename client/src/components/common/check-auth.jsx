@@ -13,6 +13,7 @@ import { Navigate, useLocation } from "react-router-dom";
 function CheckAuth({ isAuthenticated, user, children }) {
   const location = useLocation();
 
+  
   // Redirect unauthenticated users to login
   if (!isAuthenticated) {
     if (!location.pathname.includes("/login") && !location.pathname.includes("/register")) {

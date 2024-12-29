@@ -41,7 +41,7 @@ function AuthLogin() {
         toast({
           title: "Validation Error",
           description: validationError,
-          className: "bg-toastError text-white max-w-md h-16 fixed top-2 left-1/2fixed top-2 left-1/2 transform -translate-x-1/2 z-50",
+          className: "bg-toastError text-white max-w-md h-16 z-50",
           duration: 3000,
         });
         return;
@@ -53,7 +53,7 @@ function AuthLogin() {
         toast({
           title: "Success",
           description: result.message, // Message from backend registerUser endpoint  
-          className: "bg-toastSuccess text-white max-w-md h-16 fixed top-2 left-1/2fixed top-2 left-1/2 transform -translate-x-1/2 z-50",
+          className: "bg-toastSuccess text-white max-w-md h-16 z-50",
           duration: 3000,
         });
 
@@ -75,7 +75,7 @@ function AuthLogin() {
         toast({
           title: "Failed",
           description: error, // Display error message from backend
-          className: "bg-toastError text-white max-w-md h-16 fixed top-2 left-1/2fixed top-2 left-1/2 transform -translate-x-1/2 z-50 ",
+          className: "bg-toastError text-white max-w-md h-16 z-50 ",
           duration: 3000,
         });
       } finally {
@@ -89,14 +89,7 @@ function AuthLogin() {
     return ( 
         <div className="mx-auto w-full max-w-md space-y-6">
             <div className="text-center">
-                <h1 className="text-3xl font-bold tracking-tight text-foreground">Sign in to your account</h1>
-                <p className="mt-2">Don&apos;t have an account
-                    <Link 
-                        className="font-medium text-primary hover:underline ml-2"
-                        to="/auth/register">
-                    Register
-                    </Link>
-                </p>
+                <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight text-foreground ">Sign in to your account</h1>
             </div>
         <CommonForm
         formControls={loginFormControls}
@@ -105,6 +98,13 @@ function AuthLogin() {
         setFormData={setFormData}
         onSubmit={onSubmit}
         />
+        <p className="mt-2">Don&apos;t have an account
+                    <Link 
+                        className="font-medium text-blue-900 text-primary hover:underline ml-2"
+                        to="/auth/register">
+                    Register
+                    </Link>
+                </p>
         </div>
      );
 }

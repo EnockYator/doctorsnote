@@ -53,9 +53,9 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			},			
 			// Extending toast color theme for success
-			toastSuccess: 'lightgreen',
+			toastSuccess: 'hsl(120, 100%, 40%)',
 			// Extending toast color theme for error
-			toastError: 'rgba(255, 30, 22, 0.753)'
+			toastError: 'hsl(0, 100%, 40%)'
   		},
   		keyframes: {
   			'accordion-down': {

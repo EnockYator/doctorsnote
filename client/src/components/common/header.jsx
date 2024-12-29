@@ -22,7 +22,7 @@ function CommonHeader() {
     }, []);
 
     return ( 
-        <header className="flex w-full bg-blue-600 text-white py-3 px-2 shadow items-center">
+        <header className="flex w-full bg-blue-700 text-white py-3 px-2 shadow items-center fixed top-0 z-50">
             <div className="flex justify-between w-full">
                 <h1 className="text-xl md:text-2xl font-bold">DoctorsNote</h1>
                 <button
@@ -67,18 +67,28 @@ function CommonHeader() {
 
             {/* Desktop Navigation */}
             <div className="hidden max-w-7xl mx-auto mt-2 md:flex justify-between items-center px-6">
-                <nav className="md:flex">
+                <nav className="md:flex gap-x-3">
                     <Link to="/">
-                        <Button variant="secondary" className="mr-3 h-8 px-3">Home</Button>
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Home</Button>
                     </Link>
                     <Link to="/about">
-                        <Button variant="secondary" className="mr-3 h-8 px-3">About</Button>
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">About</Button>
+                    </Link>
+                    <Link to="/terms-of-service">
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Terms Of Service</Button>
+                    </Link>
+                    <Link to="/privacy-policy">
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Privacy Policy</Button>
+                    </Link>
+
+                    <Link to="/contact-us">
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Contact Us</Button>
                     </Link>
                     <Link to="/auth/login">
-                        <Button variant="secondary" className="mr-3 h-8 px-3">Login</Button>
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Login</Button>
                     </Link>
                     <Link to="/auth/register">
-                        <Button variant="secondary" className="h-8 px-2">Sign Up</Button>
+                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Sign Up</Button>
                     </Link>
                 </nav>
             </div>
@@ -87,7 +97,7 @@ function CommonHeader() {
             {menuOpen && (
                 <div 
                     ref={menuRef}
-                    className="md:hidden fixed inset-0 bg-blue-600 bg-opacity-95 flex flex-col items-center justify-center z-50">
+                    className="md:hidden fixed inset-0 bg-blue-900 bg-opacity-95 flex flex-col items-center justify-center z-50">
                     <button
                         className="absolute top-4 right-4 text-white focus:outline-none"
                         onClick={() => setMenuOpen(false)}
@@ -116,6 +126,35 @@ function CommonHeader() {
                             Home
                         </Link>
                         <Link 
+                            to="/about"
+                            className="block text-white text-xl"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            About
+                        </Link>
+                        <Link 
+                            to="/terms-of-service"
+                            className="block text-white text-xl"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Terms Of Service
+                        </Link>
+                        <Link 
+                            to="/privacy-policy"
+                            className="block text-white text-xl"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Privacy Policy
+                        </Link>
+                        <Link 
+                            to="/contact-us"
+                            className="block text-white text-xl"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Contact Us
+                        </Link>
+                        
+                        <Link 
                             to="/auth/login" 
                             className="block text-white text-xl"
                             onClick={() => setMenuOpen(false)}
@@ -128,13 +167,6 @@ function CommonHeader() {
                                 onClick={() => setMenuOpen(false)}
                         >
                             Sign Up
-                        </Link>
-                        <Link 
-                            to="/about"
-                            className="block text-white text-xl"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            About
                         </Link>
                     </nav>
                 </div>

@@ -43,5 +43,5 @@ app.use((req, res, next) => {
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // generating jwt secret key using crypto
-const secret = crypto.randomBytes(64).toString("hex");
-console.log("JWT_Secret_key: \n" + secret);
+//const secret = crypto.randomBytes(64).toString("hex");
+//console.log("JWT_Secret_key: \n" + secret);

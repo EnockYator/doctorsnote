@@ -3,8 +3,6 @@ import { Routes, Route,  } from 'react-router-dom'
 import './App.css'
 import GuestLayout from './components/guest-view/layout'
 import AuthLayout from './components/auth/layout'
-import AuthLogin from './pages/auth/login'
-import AuthRegister from './pages/auth/register'
 import AdminLayout from './components/admin-view/layout'
 import AdminProducts from './pages/admin-view/products'
 import AdminOrders from './pages/admin-view/orders'
@@ -23,11 +21,17 @@ import CustomerListing from './pages/customer-view/listing'
 import CheckAuth from './components/common/check-auth'
 import { Toaster } from './components/ui/toaster'
 import { useSelector } from 'react-redux';
-import Contact from './pages/guest-view/contact'
+import ContactUs from './pages/guest-view/contact'
 import About from './pages/guest-view/about'
 import TermsOfService from './pages/guest-view/terms-of-service'
+import PrivacyPolicy from './pages/guest-view/privacy-policy'
 import IndexPage from './pages/guest-view'
 import CustomerHome from './pages/customer-view/home'
+// auth pages
+import AdminSignUp from './pages/auth/AdminSignup'
+import DoctorSignUp from './pages/auth/DoctorSignup'
+import AuthRegister from './pages/auth/CustomerSignup'
+import AuthLogin from './pages/auth/LoginPage'
 
 
 function App() {
@@ -51,9 +55,10 @@ function App() {
           <GuestLayout/>
       }>
         <Route path='/' element={<IndexPage />}></Route>
-        <Route path='contact' element={<Contact />}></Route>
+        <Route path='contact-us' element={<ContactUs />}></Route>
         <Route path='about' element={<About />}></Route>
         <Route path="terms-of-service" element={<TermsOfService />}></Route>
+        <Route path="privacy-policy" element={<PrivacyPolicy />}></Route>
       </Route>
         
       {/* auth route */}
@@ -62,6 +67,8 @@ function App() {
       }>
         <Route path='login' element={<AuthLogin />}></Route>
         <Route path='register' element={<AuthRegister />}></Route>
+        <Route path="register/doctor" element={<DoctorSignUp />} />
+        <Route path="register/admin" element={<AdminSignUp />} />
       </Route>
 
       {/* admin route */}
