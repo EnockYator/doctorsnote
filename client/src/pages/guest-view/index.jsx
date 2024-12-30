@@ -4,10 +4,17 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import MedicalTeamImage from "./../../assets/images/medical-team.jpg"
 import MedicalBgImage from "./../../assets/images/med.jpg"
-
+// import Loader from "@/components/common/Loader";
+// import { useLoading } from "@/contexts/LoadingContext";
 
 
 const Home = () => {
+    // const {loading, handleImageLoad} = useLoading();
+    
+    // if (loading) {
+    //     return <Loader />;
+    // }
+
 
     const Feature = ({ title, description, icon }) => (
         <div className="flex items-start space-x-4">
@@ -41,11 +48,11 @@ const Home = () => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-transparent opacity-60 z-0"></div>
         {/* Content */}
-            <div className="relative  max-w-4xl px-6 pt-2 md:my-12 pb-6">
+            <div className="relative  max-w-4xl px-6 pt-1 md:my-12 pb-6">
                 <h2 className="text-2xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-md">
                     Trusted Digital Medical Notes
                 </h2>
-                <p className="text-white text-lg md:text-xl mb-8 px-4 drop-shadow-sm">
+                <p className="text-white text-base md:text-xl mb-8 px-4 drop-shadow-sm">
                     Seamlessly request and manage your medical certifications with ease.  
                     Designed for security, speed, and accuracy.
                 </p>
@@ -74,6 +81,7 @@ const Home = () => {
                     src={MedicalTeamImage}
                     alt="Medical Team"
                     className="shadow-lg md:rounded-lg max-h-[400px] object-cover mx-auto"
+                    // onLoad={handleImageLoad}
                 />
             </div>
         </main>

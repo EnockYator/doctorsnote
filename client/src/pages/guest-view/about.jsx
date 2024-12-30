@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 import MedicalTeamImage from "./../../assets/images/medical-team.jpg"
 import SecureImage from "./../../assets/images/secure.jpg"
 import EasyImage from "./../../assets/images/easy.jpg"
+// import Loader from "@/components/common/Loader";
+// import { useLoading } from "@/contexts/LoadingContext";
 
 
 function About() {
+    // const {loading, handleImageLoad} = useLoading();
+    
+    // if (loading) {
+    //     return <Loader />;
+    // }
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100 mt-[52px]">
             {/* Hero Section */}
@@ -22,6 +30,7 @@ function About() {
                     src={MedicalTeamImage /* TeamImage */}
                     alt="Medical Team"
                     className="w-11/12 md:w-1/2 object-cover rounded-lg shadow-lg mx-auto"
+                    // onLoad={handleImageLoad}
                 />
             </div>
 

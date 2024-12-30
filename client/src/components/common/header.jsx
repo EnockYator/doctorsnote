@@ -97,7 +97,7 @@ function CommonHeader() {
             {menuOpen && (
                 <div 
                     ref={menuRef}
-                    className="md:hidden fixed inset-0 bg-blue-900 bg-opacity-95 flex flex-col items-center justify-center z-50">
+                    className="md:hidden fixed inset-0 bg-blue-900 flex flex-col items-center justify-center z-50">
                     <button
                         className="absolute top-4 right-4 text-white focus:outline-none"
                         onClick={() => setMenuOpen(false)}
@@ -120,53 +120,52 @@ function CommonHeader() {
                     <nav className="text-center space-y-4">
                         <Link 
                             to="/" 
-                            className="block text-white text-xl"
+                            className="block text-white text-lg"
                             onClick={() => setMenuOpen(false)}
                         >
                             Home
                         </Link>
                         <Link 
                             to="/about"
-                            className="block text-white text-xl"
+                            className="block text-white text-lg"
                             onClick={() => setMenuOpen(false)}
                         >
                             About
                         </Link>
                         <Link 
-                            to="/terms-of-service"
-                            className="block text-white text-xl"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Terms Of Service
-                        </Link>
-                        <Link 
-                            to="/privacy-policy"
-                            className="block text-white text-xl"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Privacy Policy
-                        </Link>
-                        <Link 
-                            to="/contact-us"
-                            className="block text-white text-xl"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Contact Us
-                        </Link>
-                        
-                        <Link 
                             to="/auth/login" 
-                            className="block text-white text-xl"
+                            className="block text-white text-lg"
                             onClick={() => setMenuOpen(false)}
                         >
                             Login
                         </Link>
                         <Link 
                             to="/auth/register" 
-                                className="block text-white text-xl"
+                                className="block text-white text-lg"
                                 onClick={() => setMenuOpen(false)}
                         >
                             Sign Up
+                        </Link>
+                        <Link 
+                            to="/contact-us"
+                            className="block text-white text-lg"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Contact Us
+                        </Link>
+                        <Link 
+                            to="/terms-of-service"
+                            className="block text-white text-lg"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Terms Of Service
+                        </Link>
+                        <Link 
+                            to="/privacy-policy"
+                            className="block text-white text-lg"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Privacy Policy
                         </Link>
                     </nav>
                 </div>

@@ -100,7 +100,7 @@ function AuthLogin() {
         />
         <p className="mt-2">Don&apos;t have an account
                     <Link 
-                        className="font-medium text-blue-900 text-primary hover:underline ml-2"
+                        className="font-medium text-blue-900 hover:underline ml-2"
                         to="/auth/register">
                     Register
                     </Link>

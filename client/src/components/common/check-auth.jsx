@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import { Navigate, useLocation } from "react-router-dom";
 
 /**
@@ -12,6 +13,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 function CheckAuth({ isAuthenticated, user, children }) {
   const location = useLocation();
+  
 
   
   // Redirect unauthenticated users to login
@@ -20,6 +22,8 @@ function CheckAuth({ isAuthenticated, user, children }) {
       return <Navigate to="/auth/login" />;
     }
   }
+
+  
 
   // Redirect authenticated users from public or auth pages
   if (

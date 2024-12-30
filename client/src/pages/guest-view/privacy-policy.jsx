@@ -1,8 +1,8 @@
 
 function PrivacyPolicy(){
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-blue-200 to-gray-100 px-3 pb-16 pt-6 md:pt-9 mt-[52px]">
-      <div className="max-w-4xl mx-auto p-3 md:p-6 bg-white shadow-lg rounded-lg">
+    <div className="w-full min-h-screen bg-gray-200 px-3 pb-16 pt-6 md:pt-9 mt-[52px]">
+      <div className="max-w-4xl mx-auto p-3 md:p-6 bg-gray-50 shadow-lg rounded-lg">
         <h1 className="text-xl md:text-2xl font-bold text-blue-800 mb-2 md:mb-4 text-center">Privacy Policy</h1>
         <p className="text-gray-700 mb-6">
           At DoctorsNote, your privacy is a priority. This Privacy Policy outlines how we collect, use, and protect your information.

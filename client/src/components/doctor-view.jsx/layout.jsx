@@ -1,16 +1,22 @@
-import { Outlet } from "react-router-dom";
-import DoctorHeader from "./header";
+import { Outlet } from 'react-router-dom';
+import SideBar from './SideBar';
+import NavBar from './NavBar';
 
 function DoctorLayout() {
-    return ( 
-        <div className="flex flex-col bg-white overflow-hidden">
-            {/* common header */}
-            <DoctorHeader />
-            <main className="flex flex-col w-full">
-                <Outlet />
-            </main>
-        </div>
-     );
-}
+  return (
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Sidebar */}
+      <SideBar />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        <NavBar />
+        <main className="p-6 flex-1">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
+};
 
 export default DoctorLayout;

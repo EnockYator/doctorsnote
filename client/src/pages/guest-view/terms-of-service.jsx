@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-blue-200 to-gray-100 px-3 pb-16 pt-6 md:pt-9 mt-[52px]">
-      <div className="max-w-4xl mx-auto p-3 md:p-6 bg-white shadow-lg rounded-lg">
+    <div className="w-full min-h-screen bg-gray-200 px-3 pb-16 pt-6 md:pt-9 mt-[52px]">
+      <div className="max-w-4xl mx-auto p-3 md:p-6 bg-gray-50 shadow-lg rounded-lg">
         <h1 className="text-xl md:text-2xl font-bold text-blue-800 mb-2 md:mb-4 text-center">Terms of Service</h1>
         <p className="text-gray-600 mb-6 text-base">
           Welcome to DoctorsNote! These Terms of Service (&quot;Terms&quot;) govern your use of our platform, including our website and related services.

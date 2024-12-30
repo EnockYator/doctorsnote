@@ -3,17 +3,29 @@ import { Routes, Route,  } from 'react-router-dom'
 import './App.css'
 import GuestLayout from './components/guest-view/layout'
 import AuthLayout from './components/auth/layout'
+// admin
 import AdminLayout from './components/admin-view/layout'
-import AdminProducts from './pages/admin-view/products'
-import AdminOrders from './pages/admin-view/orders'
-import AdminFeatures from './pages/admin-view/features'
-import AdminDashboard from './pages/admin-view/dashboard'
+import DashboardOverview from './pages/admin-view/DashboardOverview';
+import UserTable from './pages/admin-view/UserTable';
+import MedicalNotes from './pages/admin-view/MedicalNotes'
+import DoctorCertification from './pages/admin-view/DoctorCertification'
+import ActivityLogs from './pages/admin-view/ActivityLogs'
+
+
 import NotFound from './pages/not-found'
-import DoctorDashboard from './pages/doctor-view/dashboard'
+
+// doctor
+import DoctorDashboard from './pages/doctor-view/Dashboard'
 import DoctorLayout from './components/doctor-view.jsx/layout'
-import DoctorListing from './pages/doctor-view/listing'
-import DoctorCheckout from './pages/doctor-view/checkout'
-import DoctorAccount from './pages/doctor-view/account'
+import DoctorProfile from './pages/doctor-view/Profile'
+import DoctorRequests from './pages/doctor-view/Requests'
+import PatientsHistory from './pages/doctor-view/PatientsHistory'
+import Appointments from './pages/doctor-view/Appointments'
+import Analytics from './pages/doctor-view/Analytics'
+import Certifications from './pages/doctor-view/Certifications'
+import Feedback from './pages/doctor-view/Feedback'
+
+
 import CustomerAccount from './pages/customer-view/account'
 import CustomerCheckout from './pages/customer-view/checkout'
 import CustomerLayout from './components/customer-view.jsx/layout'
@@ -32,21 +44,38 @@ import AdminSignUp from './pages/auth/AdminSignup'
 import DoctorSignUp from './pages/auth/DoctorSignup'
 import AuthRegister from './pages/auth/CustomerSignup'
 import AuthLogin from './pages/auth/LoginPage'
+import { useLoading } from './contexts/LoadingContext'
+import Loader from './components/common/Loader'
+
+
+//contexts
+// import { useAppLoadingContext } from './contexts'
+// import Loader from './components/common/Loader'
+
+
 
 
 function App() {
   // Access Redux state to get isAuthenticated and user data
-  //const isAuthenticated = true;
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = true;
+  //const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
+  //const {loading} = useAppLoadingContext();
+  const {loading} = useLoading();
+    
+    if (loading) {
+        return <Loader />
+    }
+  
   console.log(`isAuthenticated: ${isAuthenticated}`);
   console.log(`user role: ${JSON.stringify(user?.role)}`);
   console.log(`token: ${JSON.stringify(user?.token)}`);
   console.log(`username: ${JSON.stringify(user?.username)}`);
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white">
+      //loading ? <Loader /> :
+      <div className="flex flex-col overflow-hidden bg-white">
       <Toaster />
       <Routes>
       
@@ -75,10 +104,11 @@ function App() {
       <Route path='/admin' element={
         <CheckAuth isAuthenticated={isAuthenticated} user={user}><AdminLayout /></CheckAuth>
       }>
-        <Route path='products' element={<AdminProducts />}></Route>
-        <Route path='orders' element={<AdminOrders />}></Route>
-        <Route path='features' element={<AdminFeatures />}></Route>
-        <Route path='dashboard' element={<AdminDashboard />}></Route>
+        <Route path='notes' element={<MedicalNotes />}></Route>
+        <Route path='users' element={<UserTable />}></Route>
+        <Route path='dashboard' element={<DashboardOverview />}></Route>
+        <Route path='doctor-certification' element={<DoctorCertification />}></Route>
+        <Route path='activity-logs' element={<ActivityLogs />}></Route>
       </Route>
 
       {/* doctor route */}
@@ -86,9 +116,13 @@ function App() {
         <CheckAuth isAuthenticated={isAuthenticated} user={user}><DoctorLayout /></CheckAuth>
       }>
         <Route path='dashboard' element={<DoctorDashboard />}></Route>
-        <Route path='listing' element={<DoctorListing />}></Route>
-        <Route path='checkout' element={<DoctorCheckout />}></Route>
-        <Route path='account' element={<DoctorAccount />}></Route>
+        <Route path='profile' element={<DoctorProfile />}></Route>
+        <Route path='requests' element={<DoctorRequests />}></Route>
+        <Route path="appointments" element={<Appointments />} />
+        <Route path="history" element={<PatientsHistory />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="certifications" element={<Certifications />} />
+        <Route path="feedback" element={<Feedback />} />
       </Route>
 
       {/* customer route */}
