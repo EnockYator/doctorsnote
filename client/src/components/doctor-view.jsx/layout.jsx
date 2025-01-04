@@ -6,10 +6,10 @@ function DoctorLayout() {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <SideBar />
+      <SideBar/>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex-col">
         <NavBar />
         <main className="p-6 flex-1">
           <Outlet />

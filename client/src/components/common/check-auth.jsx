@@ -30,7 +30,7 @@ function CheckAuth({ isAuthenticated, user, children }) {
     isAuthenticated &&
     (location.pathname === "/" || location.pathname.includes("/login") || location.pathname.includes("/register"))
   ) {
-    if (user?.role === "customer") return <Navigate to="/shop/home" replace />;
+    if (user?.role === "customer") return <Navigate to="/customer/dashboard" replace />;
     if (user?.role === "doctor") return <Navigate to="/doctor/dashboard" replace />;
     if (user?.role === "admin") return <Navigate to="/admin/dashboard" replace />;
   }
@@ -38,12 +38,12 @@ function CheckAuth({ isAuthenticated, user, children }) {
   // Restrict unauthorized access for specific roles
   if (isAuthenticated) {
     if (user?.role === "customer" && location.pathname.includes("/doctor")) {
-      return <Navigate to="/shop/home" replace />;
+      return <Navigate to="/customer/dashboard" replace />;
     }
-    if (user?.role === "doctor" && location.pathname.includes("/shop")) {
+    if (user?.role === "doctor" && location.pathname.includes("/customer")) {
       return <Navigate to="/doctor/dashboard" replace />;
     }
-    if (user?.role === "admin" && (location.pathname.includes("/shop") || location.pathname.includes("/doctor"))) {
+    if (user?.role === "admin" && (location.pathname.includes("/customer") || location.pathname.includes("/doctor"))) {
       return <Navigate to="/admin/dashboard" replace />;
     }
   }

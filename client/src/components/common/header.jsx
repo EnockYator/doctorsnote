@@ -66,7 +66,7 @@ function CommonHeader() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden max-w-7xl mx-auto mt-2 md:flex justify-between items-center px-6">
+            <div className="hidden max-w-7xl mx-auto mt-2 md:flex justify-between items-center px-12">
                 <nav className="md:flex gap-x-3">
                     <Link to="/">
                         <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Home</Button>
@@ -74,13 +74,6 @@ function CommonHeader() {
                     <Link to="/about">
                         <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">About</Button>
                     </Link>
-                    <Link to="/terms-of-service">
-                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Terms Of Service</Button>
-                    </Link>
-                    <Link to="/privacy-policy">
-                        <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Privacy Policy</Button>
-                    </Link>
-
                     <Link to="/contact-us">
                         <Button variant="secondary" className="bg-transparent hover:bg-white text-white hover:text-black font-extrabold text-base h-8 px-2">Contact Us</Button>
                     </Link>
@@ -152,20 +145,6 @@ function CommonHeader() {
                             onClick={() => setMenuOpen(false)}
                         >
                             Contact Us
-                        </Link>
-                        <Link 
-                            to="/terms-of-service"
-                            className="block text-white text-lg"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Terms Of Service
-                        </Link>
-                        <Link 
-                            to="/privacy-policy"
-                            className="block text-white text-lg"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            Privacy Policy
                         </Link>
                     </nav>
                 </div>

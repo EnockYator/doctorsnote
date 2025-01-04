@@ -67,8 +67,10 @@ function AuthLogin() {
         // Redirect based on user role after successful login
         if (result.userRole === "admin") {
           navigate("/admin/dashboard");
+        }else if (result.userRole === "doctor") {
+          navigate("/doctor/dashboard");
         } else {
-          navigate("/shop/home");
+          navigate("/customer/dashboard");
         }
         
       } catch (error) {

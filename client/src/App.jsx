@@ -10,6 +10,9 @@ import UserTable from './pages/admin-view/UserTable';
 import MedicalNotes from './pages/admin-view/MedicalNotes'
 import DoctorCertification from './pages/admin-view/DoctorCertification'
 import ActivityLogs from './pages/admin-view/ActivityLogs'
+import AccountRequests from './pages/admin-view/AccountRequests'
+import AdminNotifications from './pages/admin-view/Notifications'
+import AdminSettings from './pages/admin-view/Settings';
 
 
 import NotFound from './pages/not-found'
@@ -24,21 +27,31 @@ import Appointments from './pages/doctor-view/Appointments'
 import Analytics from './pages/doctor-view/Analytics'
 import Certifications from './pages/doctor-view/Certifications'
 import Feedback from './pages/doctor-view/Feedback'
+import DoctorSettings from './pages/doctor-view/Settings'
 
-
-import CustomerAccount from './pages/customer-view/account'
+// Customer
 import CustomerCheckout from './pages/customer-view/checkout'
-import CustomerLayout from './components/customer-view.jsx/layout'
-import CustomerListing from './pages/customer-view/listing'
+import CustomerLayout from './components/customer-view.jsx/Layout'
+import CustomerDashboard from './pages/customer-view/dashboard'
+import CustomerProfile from "./pages/customer-view/profile";
+import NotesRequests from "./pages/customer-view/requestNote"; 
+import NotesHistory from "./pages/customer-view/notesHistory";
+import CustomerSupport from "./pages/customer-view/support";
+import CustomerNotifications from './pages/customer-view/notifications'
+import CustomerSettings from "./pages/customer-view/Settings";
+
+// utils
 import CheckAuth from './components/common/check-auth'
 import { Toaster } from './components/ui/toaster'
 import { useSelector } from 'react-redux';
+
+// guest pages
 import ContactUs from './pages/guest-view/contact'
 import About from './pages/guest-view/about'
 import TermsOfService from './pages/guest-view/terms-of-service'
 import PrivacyPolicy from './pages/guest-view/privacy-policy'
 import IndexPage from './pages/guest-view'
-import CustomerHome from './pages/customer-view/home'
+
 // auth pages
 import AdminSignUp from './pages/auth/AdminSignup'
 import DoctorSignUp from './pages/auth/DoctorSignup'
@@ -57,8 +70,7 @@ import Loader from './components/common/Loader'
 
 function App() {
   // Access Redux state to get isAuthenticated and user data
-  const isAuthenticated = true;
-  //const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
   //const {loading} = useAppLoadingContext();
@@ -109,6 +121,9 @@ function App() {
         <Route path='dashboard' element={<DashboardOverview />}></Route>
         <Route path='doctor-certification' element={<DoctorCertification />}></Route>
         <Route path='activity-logs' element={<ActivityLogs />}></Route>
+        <Route path='requests' element={<AccountRequests />}></Route>
+        <Route path='notifications' element={<AdminNotifications />}></Route>
+        <Route path='settings' element={<AdminSettings />}></Route>
       </Route>
 
       {/* doctor route */}
@@ -123,19 +138,25 @@ function App() {
         <Route path="analytics" element={<Analytics />} />
         <Route path="certifications" element={<Certifications />} />
         <Route path="feedback" element={<Feedback />} />
+        <Route path="settings" element={<DoctorSettings />} />
       </Route>
 
       {/* customer route */}
-      <Route path='/shop' element={
+      <Route path='/customer' element={
         <CheckAuth isAuthenticated={isAuthenticated} user={user}><CustomerLayout /></CheckAuth>
       }>
-        <Route path='home' element={<CustomerHome />}></Route>
-        <Route path='listing' element={<CustomerListing />}></Route>
-        <Route path='checkout' element={<CustomerCheckout />}></Route>
-        <Route path='account' element={<CustomerAccount />}></Route>
-      </Route>
+        <Route path="dashboard" element={<CustomerDashboard />} />
+        <Route path="profile" element={<CustomerProfile />} />
+        <Route path="requests" element={<NotesRequests />} />
+        <Route path="notifications" element={<CustomerNotifications />} />
+        <Route path="history" element={<NotesHistory />} />
+        <Route path="checkout" element={<CustomerCheckout />} />
+        <Route path="support" element={<CustomerSupport />} />
+        <Route path="settings" element={<CustomerSettings />} />
 
-        <Route path='*' element={<NotFound />}></Route>
+      </Route>
+      <Route path='*' element={<NotFound />}></Route>
+        
       </Routes>
     </div>
   )

@@ -1,117 +1,126 @@
-
-
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HomeIcon, ClipboardCheckIcon, UserCircleIcon, BellIcon } from 'lucide-react';
+import {
+  HomeIcon,
+  ClipboardCheckIcon,
+  UserCircle2,
+  BellIcon,
+  CalendarIcon,
+  HistoryIcon,
+  ShieldCheck,
+  ChartNoAxesCombined,
+  MessageSquareIcon,
+  MenuIcon,
+  SettingsIcon,
+} from 'lucide-react';
 
 function SideBar() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <div className="w-64 bg-white shadow-lg flex flex-col">
-      <div className="p-4 text-2xl font-bold text-blue-500 border-b">
-        DoctorsNotes
+    <div
+      className={`${
+        isCollapsed ? 'w-20' : 'w-64'
+      } bg-white shadow-lg flex flex-col h-screen transition-all duration-300`}
+    >
+      {/* Header */}
+      <div className="flex justify-between items-center px-4 py-5 text-xl font-bold text-blue-500 shadow-md space-x-3">
+        {!isCollapsed && <div>DoctorsNote</div>}
+        <MenuIcon
+          className="w-6 h-6 text-gray-800 cursor-pointer"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        />
       </div>
-      <nav className="flex-1 p-4 space-y-3">
-        <NavLink
+
+      {/* Navigation */}
+      <nav className="flex-1 p-4 space-y-3 overflow-scroll pb-6">
+        <NavItem
           to="/doctor/dashboard"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <HomeIcon className="w-5 h-5 mr-3" />
-          Dashboard
-        </NavLink>
-        <NavLink
+          icon={HomeIcon}
+          label="Dashboard"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/requests"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <ClipboardCheckIcon className="w-5 h-5 mr-3" />
-          Patient Requests
-        </NavLink>
-        <NavLink
+          icon={ClipboardCheckIcon}
+          label="Patient Requests"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/profile"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <UserCircleIcon className="w-5 h-5 mr-3" />
-          Profile
-        </NavLink>
-        <NavLink
+          icon={UserCircle2}
+          label="Profile"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/notifications"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <BellIcon className="w-5 h-5 mr-3" />
-          Notifications
-        </NavLink>
-        <NavLink
+          icon={BellIcon}
+          label="Notifications"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/appointments"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <HomeIcon className="w-5 h-5 mr-3" />
-          Appointments
-        </NavLink>
-        <NavLink
+          icon={CalendarIcon}
+          label="Appointments"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/history"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <HomeIcon className="w-5 h-5 mr-3" />
-          Patients History
-        </NavLink>
-        <NavLink
+          icon={HistoryIcon}
+          label="Patients History"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/certifications"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <HomeIcon className="w-5 h-5 mr-3" />
-          Certifications
-        </NavLink>
-        <NavLink
+          icon={ShieldCheck}
+          label="Certifications"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/analytics"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <HomeIcon className="w-5 h-5 mr-3" />
-          Analytics
-        </NavLink>
-        <NavLink
+          icon={ChartNoAxesCombined}
+          label="Analytics"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           to="/doctor/feedback"
-          className={({ isActive }) =>
-            `flex items-center p-3 rounded-lg ${
-              isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-            }`
-          }
-        >
-          <HomeIcon className="w-5 h-5 mr-3" />
-          Feedback
-        </NavLink>
+          icon={MessageSquareIcon}
+          label="Feedback"
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          to="/doctor/settings"
+          icon={SettingsIcon}
+          label="Settings"
+          isCollapsed={isCollapsed}
+        />
       </nav>
     </div>
   );
-};
+}
+
+function NavItem({ to, icon: Icon, label, isCollapsed }) {
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `flex items-center p-3 rounded-lg transition ${
+          isActive
+            ? 'bg-blue-500 text-white shadow-lg'
+            : 'hover:bg-gray-100 text-gray-800'
+        }`
+      }
+    >
+      <Icon className="w-6 h-6" />
+      {!isCollapsed && <span className="ml-3">{label}</span>}
+      {isCollapsed && (
+        <span className="sr-only">
+          {label} {/* For screen readers */}
+        </span>
+      )}
+    </NavLink>
+  );
+}
 
 export default SideBar;
