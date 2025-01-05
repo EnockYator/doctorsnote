@@ -1,24 +1,30 @@
+import { BellIcon, SearchIcon, UserCircle2 } from "lucide-react";
 
-
-import { BellIcon, UserCircle2Icon } from "lucide-react";
-
-function NavBar() {
+function Navbar() {
   return (
-    <div className="bg-white shadow-md flex items-center justify-between px-6 py-5">
-      <div className="flex items-center space-x-4">
-        <h1 className="text-lg font-bold text-blue-500">Doctor Dashboard</h1>
+    <div className="flex items-center justify-between bg-white shadow px-6 py-4">
+      {/* Welcome Text */}
+      <h1 className="text-lg font-semibold text-blue-600 whitespace-nowrap">
+        Hi, Doctor!
+      </h1>
+
+      {/* Search Bar */}
+      <div className="flex items-center flex-grow max-w-md space-x-2 px-3 py-1 border rounded-2xl">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="outline-none flex-grow w-full"
+        />
+        <SearchIcon className="w-5 h-5 text-gray-500" />
       </div>
-      <div className="flex items-center space-x-10 pr-3">
-        <div className="relative cursor-pointer">
-          <BellIcon className="w-6 h-6 text-gray-500" />
-          <span className="absolute top-0 right-0 w-4 h-4 text-xs text-white bg-red-500 rounded-full flex items-center justify-center">
-            3
-          </span>
-        </div>
-        <UserCircle2Icon className="text-gray-500 w-9 h-9"/>
+
+      {/* Icons Section */}
+      <div className="flex items-center space-x-8">
+        <BellIcon className="w-6 h-6 text-gray-600" />
+        <UserCircle2 className="w-8 h-8 text-gray-600" />
       </div>
     </div>
   );
 };
 
-export default NavBar;
+export default Navbar;

@@ -1,19 +1,19 @@
 import { Outlet } from 'react-router-dom';
 import SideBar from './SideBar';
 import NavBar from './NavBar';
+import CommonFooter from '../common/footer';
 
 function DoctorLayout() {
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <SideBar/>
-
-      {/* Main Content */}
-      <div className="flex-1 flex-col">
+      <div className="flex flex-col flex-1 overflow-hidden">
         <NavBar />
-        <main className="p-6 flex-1">
+        <main className="flex-1 overflow-y-auto p-6">
           <Outlet />
         </main>
+        <CommonFooter />
       </div>
     </div>
   );

@@ -1,51 +1,29 @@
-
-import { useState} from "react";
-import Notifications from "./Notifications";
-import AccountCard from "./AccountCard";
-import { BellIcon,  User2Icon } from "lucide-react";
-
+import { BellIcon, SearchIcon, UserCircle2 } from "lucide-react";
 
 function AdminHeader() {
-  const [showNotifications, setShowNotifications] = useState(false);
-  const [showAccountCard, setShowAccountCard] = useState(false);
-
-  const handleNotificationBtn = () => {
-    setShowNotifications(!showNotifications);
-  };
-  const handleAccountBtn = () => {
-    setShowAccountCard(!showAccountCard);
-  };
-
-  console.log('Notifications:' + showNotifications)
   return (
-    <header className="flex items-center justify-between bg-white shadow-md px-6 h-16">
-      <div className="text-lg font-semibold">Admin Dashboard</div>
-      <div className="flex items-center space-x-10">
-        <div className="flex items-center">
-          <button 
-          onClick={handleNotificationBtn}
-          className="text-gray-600 hover:text-blue-600"
-          >
-            <BellIcon className="w-6 h-6"/>
-          </button>
-          {showNotifications &&
-          <Notifications />
-          }
+    <div className="flex items-center justify-between bg-white shadow px-6 py-4">
+      {/* Welcome Text */}
+      <h1 className="text-lg font-semibold text-blue-600 whitespace-nowrap">
+        Hi, Admin!
+      </h1>
 
-        </div>
-        <div className="flex items-center">
-          <button 
-            onClick={handleAccountBtn}
-            className="flex items-center space-x-2 text-gray-600 hover:text-blue-600">
-            <User2Icon className="w-6 h-6"/>
-            <p>Admin</p>
-          </button>
-          {showAccountCard &&
-          <AccountCard />
-          }
-        </div>
+      {/* Search Bar */}
+      <div className="flex items-center flex-grow max-w-md space-x-2 px-3 py-1 border rounded-2xl">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="outline-none flex-grow w-full"
+        />
+        <SearchIcon className="w-5 h-5 text-gray-500" />
       </div>
-    </header>
+
+      {/* Icons Section */}
+      <div className="flex items-center space-x-8">
+        <BellIcon className="w-6 h-6 text-gray-600" />
+        <UserCircle2 className="w-8 h-8 text-gray-600" />
+      </div>
+    </div>
   );
 };
 

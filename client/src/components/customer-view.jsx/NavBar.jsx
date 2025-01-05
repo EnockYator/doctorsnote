@@ -1,14 +1,29 @@
-import { FaBell, FaUserCircle } from "react-icons/fa";
+import { BellIcon, SearchIcon, UserCircle2 } from "lucide-react";
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <header className="bg-white shadow-md p-4 flex justify-between items-center">
-      <h1 className="text-lg font-semibold text-blue-600">Welcome, Customer!</h1>
-      <div className="flex items-center space-x-4">
-        <FaBell className="text-xl text-gray-600 cursor-pointer" />
-        <FaUserCircle className="text-2xl text-gray-600 cursor-pointer" />
+    <div className="flex items-center justify-between bg-white shadow px-6 py-4">
+      {/* Welcome Text */}
+      <h1 className="text-lg font-semibold text-blue-600 whitespace-nowrap">
+        Hi, Customer!
+      </h1>
+
+      {/* Search Bar */}
+      <div className="flex items-center flex-grow max-w-md space-x-2 px-3 py-1 border rounded-2xl">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="outline-none flex-grow w-full"
+        />
+        <SearchIcon className="w-5 h-5 text-gray-500" />
       </div>
-    </header>
+
+      {/* Icons Section */}
+      <div className="flex items-center space-x-8">
+        <BellIcon className="w-6 h-6 text-gray-600" />
+        <UserCircle2 className="w-8 h-8 text-gray-600" />
+      </div>
+    </div>
   );
 };
 

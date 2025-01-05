@@ -22,10 +22,10 @@ const Sidebar = () => {
       } bg-white shadow-lg flex flex-col h-screen transition-all duration-300`}
     >
       {/* Header */}
-      <div className="flex justify-between items-center px-4 py-5 text-xl font-bold text-blue-500 shadow-md space-x-3">
+      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-500 text-white border-b-2 border-r-2 space-x-3">
         {!isCollapsed && <div>DoctorsNote</div>}
         <MenuIcon
-          className="w-6 h-6 text-gray-800 cursor-pointer"
+          className="w-6 h-6 cursor-pointer text-white"
           onClick={() => setIsCollapsed(!isCollapsed)}
         />
       </div>
