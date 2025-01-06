@@ -1,9 +1,9 @@
 
 
-function Settings() {
+function AdminSettings() {
     return ( 
         <div>Admin Settings</div>
      );
 }
 
-export default Settings;
+export default AdminSettings;

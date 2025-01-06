@@ -13,6 +13,21 @@ import ActivityLogs from './pages/admin-view/ActivityLogs'
 import AccountRequests from './pages/admin-view/AccountRequests'
 import AdminNotifications from './pages/admin-view/Notifications'
 import AdminSettings from './pages/admin-view/Settings';
+import AnalyticsAndReports from './pages/admin-view/AnalyticsAndReports'
+import ContentManagement from './pages/admin-view/ContentManagement'
+import SystemMonitoring from './pages/admin-view/SystemMonitoring'
+import RoleAndPermissions from './pages/admin-view/RoleAndPermissions'
+import DataAndBackup from './pages/admin-view/DataAndBackup'
+import Integrations from './pages/admin-view/Integrations'
+import AdminFeedback from './pages/admin-view/Feedback'
+import SupportTickets from './pages/admin-view/SupportTickets'
+import PaymentAndTransactions from './pages/admin-view/PaymentAndTransactions'
+import AdminProfile from './pages/admin-view/Profile'
+import AdminSecurity from './pages/admin-view/Security'
+import AdminSupport from './pages/admin-view/SupportTickets'
+
+
+
 
 
 import NotFound from './pages/not-found'
@@ -23,11 +38,20 @@ import DoctorLayout from './components/doctor-view.jsx/layout'
 import DoctorProfile from './pages/doctor-view/Profile'
 import DoctorRequests from './pages/doctor-view/Requests'
 import PatientsHistory from './pages/doctor-view/PatientsHistory'
-import Appointments from './pages/doctor-view/Appointments'
-import Analytics from './pages/doctor-view/Analytics'
-import Certifications from './pages/doctor-view/Certifications'
-import Feedback from './pages/doctor-view/Feedback'
+import DoctorAppointments from './pages/doctor-view/Appointments'
+import DoctorAnalytics from './pages/doctor-view/Analytics'
+import DoctorCertifications from './pages/doctor-view/Certifications'
+import DoctorFeedback from './pages/doctor-view/Feedback'
 import DoctorSettings from './pages/doctor-view/Settings'
+import DoctorEarnings from './pages/doctor-view/Earnings'
+import DoctorHelp from './pages/doctor-view/Help'
+import DoctorSecurity from './pages/doctor-view/Security'
+import DoctorChat from './pages/doctor-view/Chat'
+import DoctorSavedNotes from './pages/doctor-view/SavedNotes'
+import DoctorCustomization from './pages/doctor-view/Customization'
+import DoctorSupport from './pages/customer-view/support'
+import DoctorAvailability from './pages/doctor-view/Availability'
+import DoctorNotifications from './pages/doctor-view/Notifications'
 
 // Customer
 import CustomerCheckout from './pages/customer-view/checkout'
@@ -39,6 +63,13 @@ import NotesHistory from "./pages/customer-view/notesHistory";
 import CustomerSupport from "./pages/customer-view/support";
 import CustomerNotifications from './pages/customer-view/notifications'
 import CustomerSettings from "./pages/customer-view/Settings";
+import CustomerTransaction from './pages/customer-view/Transaction'
+import CustomerChat from './pages/customer-view/Chat'
+import CustomerDocuments from './pages/customer-view/Documents'
+import CustomerCustomization from './pages/customer-view/Customization'
+import CustomerAnalytics from './pages/customer-view/Analytics'
+import CustomerHelp from './pages/customer-view/Help'
+import CustomerSecurity from './pages/customer-view/Security'
 
 // utils
 import CheckAuth from './components/common/check-auth'
@@ -57,20 +88,20 @@ import AdminSignUp from './pages/auth/AdminSignup'
 import DoctorSignUp from './pages/auth/DoctorSignup'
 import AuthRegister from './pages/auth/CustomerSignup'
 import AuthLogin from './pages/auth/LoginPage'
-import { useLoading } from './contexts/LoadingContext'
-import Loader from './components/common/Loader'
-
 
 //contexts
 // import { useAppLoadingContext } from './contexts'
 // import Loader from './components/common/Loader'
+import { useLoading } from './contexts/LoadingContext'
+import Loader from './components/common/Loader'
 
 
 
 
 function App() {
   // Access Redux state to get isAuthenticated and user data
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  //const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = true;
   const user = useSelector((state) => state.auth.user);
 
   //const {loading} = useAppLoadingContext();
@@ -124,6 +155,19 @@ function App() {
         <Route path='requests' element={<AccountRequests />}></Route>
         <Route path='notifications' element={<AdminNotifications />}></Route>
         <Route path='settings' element={<AdminSettings />}></Route>
+        <Route path='analytics' element={<AnalyticsAndReports />}></Route>
+        <Route path='content-management' element={<ContentManagement />}></Route>
+        <Route path='system-monitoring' element={<SystemMonitoring />}></Route>
+        <Route path='role-and-permissions' element={<RoleAndPermissions />}></Route>
+        <Route path='data-and-backup' element={<DataAndBackup />}></Route>
+        <Route path='integrations' element={<Integrations />}></Route>
+        <Route path='feedback' element={<AdminFeedback />}></Route>
+        <Route path='support-tickets' element={<SupportTickets />}></Route>
+        <Route path='payment-and-transactions' element={<PaymentAndTransactions />}></Route>
+        <Route path='security' element={<AdminSecurity />}></Route>
+        <Route path='support' element={<AdminSupport />}></Route>
+        <Route path='profile' element={<AdminProfile />}></Route>
+
       </Route>
 
       {/* doctor route */}
@@ -133,12 +177,24 @@ function App() {
         <Route path='dashboard' element={<DoctorDashboard />}></Route>
         <Route path='profile' element={<DoctorProfile />}></Route>
         <Route path='requests' element={<DoctorRequests />}></Route>
-        <Route path="appointments" element={<Appointments />} />
+        <Route path="appointments" element={<DoctorAppointments />} />
         <Route path="history" element={<PatientsHistory />} />
-        <Route path="analytics" element={<Analytics />} />
-        <Route path="certifications" element={<Certifications />} />
-        <Route path="feedback" element={<Feedback />} />
+        <Route path="analytics" element={<DoctorAnalytics />} />
+        <Route path="certifications" element={<DoctorCertification />} />
+        <Route path="feedback" element={<DoctorFeedback />} />
         <Route path="settings" element={<DoctorSettings />} />
+        <Route path="earnings" element={<DoctorEarnings />} />
+        <Route path="help" element={<DoctorHelp />} />
+        <Route path="security" element={<DoctorSecurity />} />
+        <Route path="customization" element={<DoctorCustomization />} />
+        <Route path="chat" element={<DoctorChat />} />
+        <Route path="saved-notes" element={<DoctorSavedNotes />} />
+        <Route path="notifications" element={<DoctorNotifications />} />
+        <Route path="availability" element={<DoctorAvailability />} />
+        <Route path="support" element={<DoctorSupport />} />
+        <Route path="cerifications" element={<DoctorCertifications />} />
+        <Route path="availability" element={<DoctorAvailability />} />
+
       </Route>
 
       {/* customer route */}
@@ -153,6 +209,14 @@ function App() {
         <Route path="checkout" element={<CustomerCheckout />} />
         <Route path="support" element={<CustomerSupport />} />
         <Route path="settings" element={<CustomerSettings />} />
+        <Route path="transaction" element={<CustomerTransaction/>} />
+        <Route path="chat" element={<CustomerChat />} />
+        <Route path="documents" element={<CustomerDocuments />} />
+        <Route path="analytics" element={<CustomerAnalytics />} />
+        <Route path="help" element={<CustomerHelp />} />
+        <Route path="security" element={<CustomerSecurity />} />
+        <Route path="customization" element={<CustomerCustomization />} />
+
 
       </Route>
       <Route path='*' element={<NotFound />}></Route>
