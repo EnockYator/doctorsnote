@@ -52,7 +52,7 @@ function AuthLogin() {
         const result = await dispatch(loginUser(formData)).unwrap();
         toast({
           title: "Success",
-          description: result.message, // Message from backend registerUser endpoint  
+          description: result.message, // Message from backend loginUser endpoint  
           className: "bg-toastSuccess text-white max-w-md h-16 z-50",
           duration: 3000,
         });
@@ -91,22 +91,22 @@ function AuthLogin() {
     return ( 
         <div className="mx-auto w-full max-w-md space-y-6">
             <div className="text-center">
-                <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight text-foreground ">Sign in to your account</h1>
+                <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight">Sign in to your account</h1>
             </div>
-        <CommonForm
-        formControls={loginFormControls}
-        buttonText={isLoading ? 'Logging in...' : 'Login'} // Change button text based on loading state
-        formData={formData}
-        setFormData={setFormData}
-        onSubmit={onSubmit}
-        />
-        <p className="mt-2">Don&apos;t have an account
-                    <Link 
-                        className="font-medium text-blue-900 hover:underline ml-2"
-                        to="/auth/register">
-                    Register
-                    </Link>
-                </p>
+            <CommonForm
+              formControls={loginFormControls}
+              buttonText={isLoading ? 'Logging in...' : 'Login'} // Change button text based on loading state
+              formData={formData}
+              setFormData={setFormData}
+              onSubmit={onSubmit}
+            />
+            <p className="mt-2">Don&apos;t have an account
+              <Link 
+                  className="font-medium text-blue-900 hover:underline ml-2"
+                  to="/auth/register">
+              Register
+              </Link>
+          </p>
         </div>
      );
 }

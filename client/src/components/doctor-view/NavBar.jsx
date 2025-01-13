@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { BellIcon, MenuIcon, SearchIcon, UserCircle2 } from "lucide-react";
 
-function AdminHeader({ onClickMenuIcon, isDisplayingMenu }) {
+function Navbar({ onClickMenuIcon, isDisplayingMenu }) {
   return (
     <div className="sticky top-0 z-10 bg-blue-800 md:bg-white shadow px-3 md:px-6 pb-3 pt-2 md:py-4 space-y-2">
       <div className="flex items-center justify-between">
@@ -13,7 +13,7 @@ function AdminHeader({ onClickMenuIcon, isDisplayingMenu }) {
         />
         {/* Welcome Text */}
         <h1 className="absolute md:relative left-12 md:left-0 text-sm md:text-lg font-semibold text-gray-100 md:text-blue-800 whitespace-nowrap">
-          Hi, Admin!
+          Hi, Doctor!
         </h1>
         {/* Search Bar */}
         <div className="hidden md:flex mx-auto items-center flex-grow max-w-md space-x-2 px-3 py-1 border rounded-2xl">
@@ -43,4 +43,4 @@ function AdminHeader({ onClickMenuIcon, isDisplayingMenu }) {
   );
 };
 
-export default AdminHeader;
+export default Navbar;

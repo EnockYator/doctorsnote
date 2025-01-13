@@ -146,6 +146,34 @@ function CommonHeader() {
                         >
                             Contact Us
                         </Link>
+
+                        {/* Testing */}
+                        <div className="bg-blue-500 rounded-lg p-4">
+                            <h1 className="border-b mb-3 font-extrabold text-base">Testing Dashboards</h1>
+                            <Link 
+                            to="/admin/dashboard"
+                            className="block text-white text-sm"
+                            onClick={() => setMenuOpen(false)}
+                            >
+                                Admin Dashboard
+                            </Link>
+                            <Link 
+                            to="/doctor/dashboard"
+                            className="block text-white text-sm"
+                            onClick={() => setMenuOpen(false)}
+                            >
+                                Doctor Dashboard
+                            </Link>
+                            <Link 
+                            to="/customer/dashboard"
+                            className="block text-white text-sm"
+                            onClick={() => setMenuOpen(false)}
+                            >
+                                Customer Dashboard
+                            </Link>
+                            <h1 className="mt-3 font-extrabold text-red-700">For testing purpose ONLY!!!</h1>
+                        </div>
+                        {/* End of Testing */}
                     </nav>
                 </div>
             )}

@@ -34,7 +34,7 @@ import NotFound from './pages/not-found'
 
 // doctor
 import DoctorDashboard from './pages/doctor-view/Dashboard'
-import DoctorLayout from './components/doctor-view.jsx/layout'
+import DoctorLayout from './components/doctor-view/layout'
 import DoctorProfile from './pages/doctor-view/Profile'
 import DoctorRequests from './pages/doctor-view/Requests'
 import PatientsHistory from './pages/doctor-view/PatientsHistory'
@@ -55,7 +55,7 @@ import DoctorNotifications from './pages/doctor-view/Notifications'
 
 // Customer
 import CustomerCheckout from './pages/customer-view/checkout'
-import CustomerLayout from './components/customer-view.jsx/Layout'
+import CustomerLayout from './components/customer-view/Layout'
 import CustomerDashboard from './pages/customer-view/dashboard'
 import CustomerProfile from "./pages/customer-view/profile";
 import NotesRequests from "./pages/customer-view/requestNote"; 
@@ -139,8 +139,8 @@ function App() {
       }>
         <Route path='login' element={<AuthLogin />}></Route>
         <Route path='register' element={<AuthRegister />}></Route>
-        <Route path="register/doctor" element={<DoctorSignUp />} />
-        <Route path="register/admin" element={<AdminSignUp />} />
+        <Route path="register-doctor" element={<DoctorSignUp />} />
+        <Route path="register-admin" element={<AdminSignUp />} />
       </Route>
 
       {/* admin route */}

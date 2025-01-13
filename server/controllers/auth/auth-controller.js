@@ -2,12 +2,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./../../models/User');
 
-// Register User
-const registerUser = async (req, res) => {
-    const { userName, email, password } = req.body;
+// Register Customer
+const registerCustomer = async (req, res) => {
+    const { userName, email, password, role } = req.body;
     try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
+        const existingCustomer = await User.findOne({ email });
+        if (existingCustomer) {
             return res.status(400).json({
                 success: false,
                 message: 'User with provided email already exists.',
@@ -18,6 +18,7 @@ const registerUser = async (req, res) => {
         const newUser = new User({
             userName,
             email,
+            role,
             password: hashedPassword,
         });
         await newUser.save();
@@ -34,6 +35,83 @@ const registerUser = async (req, res) => {
         });
     }
 };
+
+// Register Admin
+const registerAdmin = async (req, res) => {
+    const { userName, email, password, adminCode, role } = req.body;
+    try {
+        const existingAdmin = await User.findOne({ email });
+        if (existingAdmin) {
+            return res.status(400).json({
+                success: false,
+                message: 'User with provided email already exists.',
+            });
+        }
+        
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const newUser = new User({
+            userName,
+            email,
+            password: hashedPassword,
+            adminCode,
+            role
+        });
+        await newUser.save();
+
+        res.status(201).json({
+            success: true,
+            message: 'Registration successful, redirecting to Login.,',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'An unexpected error occurred. Please check your internet connection or try again later.',
+        });
+    }
+};
+
+// Register Doctor
+const registerDoctor = async (req, res) => {
+    const { userName, gender, country, city, specialization, institution, certificate, email, password, confirmPassword, role} = req.body;
+    try {
+        const existingDoctor = await User.findOne({ email });
+        if (existingDoctor) {
+            return res.status(400).json({
+                success: false,
+                message: 'User with provided email already exists.',
+            });
+        }
+        
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const newUser = new User({
+            userName,
+            gender,
+            country,
+            city,
+            specialization,
+            institution,
+            certificate,
+            email,
+            confirmPassword: hashedPassword,
+            password: hashedPassword,
+            role
+        });
+        await newUser.save();
+
+        res.status(201).json({
+            success: true,
+            message: 'Registration successful, redirecting to Login.,',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'An unexpected error occurred. Please check your internet connection or try again later.',
+        });
+    }
+};
+
 
 // Login User
 const loginUser = async (req, res) => {
@@ -112,4 +190,4 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
-module.exports = { registerUser, loginUser, logoutUser, authMiddleware };
+module.exports = { registerCustomer, registerDoctor, registerAdmin, loginUser, logoutUser, authMiddleware };

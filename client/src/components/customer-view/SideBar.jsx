@@ -1,4 +1,3 @@
-
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -6,22 +5,17 @@ import {
   HomeIcon,
   ClipboardCheckIcon,
   UserCircle2,
-  BellIcon,
-  CalendarIcon,
+  Headset,
   HistoryIcon,
-  ShieldCheck,
-  ChartNoAxesCombined,
-  MessageSquareIcon,
   MenuIcon,
   SettingsIcon,
-  DollarSign,
   MessageCircle,
-  CircleHelp,
-  Headset,
-  ContactRound,
-  Palette,
+  DollarSign,
   Files,
-  Hospital,
+  ChartNoAxesCombined,
+  CircleHelp,
+  Palette,
+  ShieldCheck,
 } from 'lucide-react';
 
 const Sidebar = ({ closeMenu }) => {
@@ -34,7 +28,7 @@ const Sidebar = ({ closeMenu }) => {
       } bg-white shadow-lg flex flex-col h-full transition-all duration-300`}
     >
       {/* Header */}
-      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-500 text-white border-b">
+      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-800 text-white border-b">
         {!isCollapsed && <div>DoctorsNote</div>}
         <MenuIcon
           className="w-6 h-6 cursor-pointer text-white"
@@ -45,125 +39,91 @@ const Sidebar = ({ closeMenu }) => {
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-3 overflow-scroll pb-6">
         <NavItem
-          to="/doctor/dashboard"
+          to="dashboard"
           icon={HomeIcon}
           label="Dashboard"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/profile"
+          to="profile"
           icon={UserCircle2}
           label="Profile"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/requests"
+          to="requests"
           icon={ClipboardCheckIcon}
-          label="Note Requests"
+          label="Request Note"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/notifications"
-          icon={BellIcon}
-          label="Notifications"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="/doctor/saved-notes"
-          icon={Files}
-          label="Saved Notes"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="/doctor/appointments"
-          icon={CalendarIcon}
-          label="Appointments"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="/doctor/history"
+          to="history"
           icon={HistoryIcon}
-          label="Patients History"
+          label="Notes History"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/certifications"
-          icon={Hospital}
-          label="Certifications"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="/doctor/earnings"
+          to="transaction"
           icon={DollarSign}
-          label="My Earnings"
+          label="Transaction History"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/analytics"
+          to="documents"
+          icon={Files}
+          label="Saved Documents"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="analytics"
           icon={ChartNoAxesCombined}
-          label="Analytics"
+          label="Analytics and Insights"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/chat"
+          to="chat"
           icon={MessageCircle}
-          label="Chat with Patient"
+          label="Chat"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/availability"
-          icon={ContactRound}
-          label="Set Availability"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        /><NavItem
-          to="/doctor/help"
-          icon={CircleHelp}
-          label="Help and FAQs"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="/doctor/support"
-          icon={Headset}
-          label="Support"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="/doctor/security"
+          to="security"
           icon={ShieldCheck}
           label="Security"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/customization"
+          to="customization"
           icon={Palette}
           label="Customization"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/feedback"
-          icon={MessageSquareIcon}
-          label="Feedback and Ratings"
+          to="help"
+          icon={CircleHelp}
+          label="Help and FAQs"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="/doctor/settings"
+          to="support"
+          icon={Headset}
+          label="Support and Feedback"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="settings"
           icon={SettingsIcon}
           label="Settings"
           isCollapsed={isCollapsed}
@@ -181,7 +141,7 @@ const NavItem = ({ to, icon: Icon, label, isCollapsed, closeMenu }) => (
     className={({ isActive }) =>
       `flex items-center p-3 rounded-lg transition ${
         isActive
-          ? "bg-blue-500 text-white shadow-lg"
+          ? "bg-blue-600 text-white shadow-lg"
           : "hover:bg-gray-100 text-gray-800"
       }`
     }
@@ -197,4 +157,3 @@ const NavItem = ({ to, icon: Icon, label, isCollapsed, closeMenu }) => (
 );
 
 export default Sidebar;
-

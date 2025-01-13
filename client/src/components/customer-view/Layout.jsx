@@ -21,7 +21,7 @@ function CustomerLayout() {
           </div>
           {/* Overlay */}
           <div
-            className="flex-1 bg-black opacity-50"
+            className="flex-1 bg-black opacity-90"
             onClick={closeMenu}
           ></div>
         </div>

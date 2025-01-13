@@ -75,7 +75,7 @@ export default {
   				}
   			},
 			'bounce': {
-				"0%, 100%": { transform: "scaleY(2.0)" },
+				"0%, 100%": { transform: "scaleY(3.0)" },
 				"50%": { transform: "scale(0.3)"}
 			}
   		},

@@ -1,25 +1,70 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new  mongoose.Schema({
-    userName : {
-        type: String,
-        required: true,
-        unique: true
+const userSchema = new mongoose.Schema({
+  // Common fields for all users
+  userName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    enum: ['admin', 'customer', 'doctor'],
+    required: true,
+  },
+  // Admin-specific fields
+  adminCode: {
+    type: String,
+    required: function () {
+      return this.role === 'admin';
     },
-    email : {
-        type: String,
-        required: true,
-        unique: true
+  },
+  // Doctor-specific fields
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other'],
+    required: function () {
+      return this.role === 'doctor';
     },
-    password : {
-        type: String,
-        required: true,
+  },
+  country: {
+    type: String,
+    required: function () {
+      return this.role === 'doctor';
     },
-    role : {
-        type: String,
-        default: 'customer'
-    }
+  },
+  city: {
+    type: String,
+    required: function () {
+      return this.role === 'doctor';
+    },
+  },
+  specialization: {
+    type: String,
+    required: function () {
+      return this.role === 'doctor';
+    },
+  },
+  institution: {
+    type: String,
+    required: function () {
+      return this.role === 'doctor';
+    },
+  },
+  certificate: {
+    type: String, // Assuming this is a file path or URL
+    required: function () {
+      return this.role === 'doctor';
+    },
+  },
 });
 
-const User = mongoose.model("User", UserSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

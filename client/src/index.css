@@ -66,5 +66,18 @@
   }
 }
 
+/*Ensure dropdowns appear above the form*/
+[role="listbox"] {
+  z-index: 1000 !important;
+  background-color: gray;
+  padding: 10px 20px;
+  border-radius: 10px;
+  overflow: scroll;
+  position: relative;
+  top: 50px;
+  
+}
+
+
 
 

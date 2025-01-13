@@ -1,3 +1,4 @@
+
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -5,17 +6,22 @@ import {
   HomeIcon,
   ClipboardCheckIcon,
   UserCircle2,
-  Headset,
+  BellIcon,
+  CalendarIcon,
   HistoryIcon,
+  ShieldCheck,
+  ChartNoAxesCombined,
+  MessageSquareIcon,
   MenuIcon,
   SettingsIcon,
-  MessageCircle,
   DollarSign,
-  Files,
-  ChartNoAxesCombined,
+  MessageCircle,
   CircleHelp,
+  Headset,
+  ContactRound,
   Palette,
-  ShieldCheck,
+  Files,
+  Hospital,
 } from 'lucide-react';
 
 const Sidebar = ({ closeMenu }) => {
@@ -28,7 +34,7 @@ const Sidebar = ({ closeMenu }) => {
       } bg-white shadow-lg flex flex-col h-full transition-all duration-300`}
     >
       {/* Header */}
-      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-500 text-white border-b">
+      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-800 text-white border-b">
         {!isCollapsed && <div>DoctorsNote</div>}
         <MenuIcon
           className="w-6 h-6 cursor-pointer text-white"
@@ -39,91 +45,125 @@ const Sidebar = ({ closeMenu }) => {
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-3 overflow-scroll pb-6">
         <NavItem
-          to="dashboard"
+          to="/doctor/dashboard"
           icon={HomeIcon}
           label="Dashboard"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="profile"
+          to="/doctor/profile"
           icon={UserCircle2}
           label="Profile"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="requests"
+          to="/doctor/requests"
           icon={ClipboardCheckIcon}
-          label="Request Note"
+          label="Note Requests"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="history"
-          icon={HistoryIcon}
-          label="Notes History"
+          to="/doctor/notifications"
+          icon={BellIcon}
+          label="Notifications"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="transaction"
-          icon={DollarSign}
-          label="Transaction History"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="documents"
+          to="/doctor/saved-notes"
           icon={Files}
-          label="Saved Documents"
+          label="Saved Notes"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="analytics"
+          to="/doctor/appointments"
+          icon={CalendarIcon}
+          label="Appointments"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/history"
+          icon={HistoryIcon}
+          label="Patients History"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/certifications"
+          icon={Hospital}
+          label="Certifications"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/earnings"
+          icon={DollarSign}
+          label="My Earnings"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/analytics"
           icon={ChartNoAxesCombined}
-          label="Analytics and Insights"
+          label="Analytics"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="chat"
+          to="/doctor/chat"
           icon={MessageCircle}
-          label="Chat"
+          label="Chat with Patient"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="security"
-          icon={ShieldCheck}
-          label="Security"
+          to="/doctor/availability"
+          icon={ContactRound}
+          label="Set Availability"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
-        />
-        <NavItem
-          to="customization"
-          icon={Palette}
-          label="Customization"
-          isCollapsed={isCollapsed}
-          closeMenu={closeMenu}
-        />
-        <NavItem
-          to="help"
+        /><NavItem
+          to="/doctor/help"
           icon={CircleHelp}
           label="Help and FAQs"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="support"
+          to="/doctor/support"
           icon={Headset}
-          label="Support and Feedback"
+          label="Support"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
         <NavItem
-          to="settings"
+          to="/doctor/security"
+          icon={ShieldCheck}
+          label="Security"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/customization"
+          icon={Palette}
+          label="Customization"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/feedback"
+          icon={MessageSquareIcon}
+          label="Feedback and Ratings"
+          isCollapsed={isCollapsed}
+          closeMenu={closeMenu}
+        />
+        <NavItem
+          to="/doctor/settings"
           icon={SettingsIcon}
           label="Settings"
           isCollapsed={isCollapsed}
@@ -141,7 +181,7 @@ const NavItem = ({ to, icon: Icon, label, isCollapsed, closeMenu }) => (
     className={({ isActive }) =>
       `flex items-center p-3 rounded-lg transition ${
         isActive
-          ? "bg-blue-500 text-white shadow-lg"
+          ? "bg-blue-600 text-white shadow-lg"
           : "hover:bg-gray-100 text-gray-800"
       }`
     }
@@ -157,3 +197,4 @@ const NavItem = ({ to, icon: Icon, label, isCollapsed, closeMenu }) => (
 );
 
 export default Sidebar;
+

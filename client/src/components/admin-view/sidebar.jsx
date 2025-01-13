@@ -35,7 +35,7 @@ const AdminSideBar = ({ closeMenu }) => {
       } bg-white shadow-lg flex flex-col h-full transition-all duration-300`}
     >
       {/* Header */}
-      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-500 text-white border-b">
+      <div className="flex justify-between items-center px-4 py-[18px] text-xl font-bold bg-blue-800 text-white border-b">
         {!isCollapsed && <div>DoctorsNote</div>}
         <MenuIcon
           className="w-6 h-6 cursor-pointer text-white"
@@ -190,7 +190,7 @@ const NavItem = ({ to, icon: Icon, label, isCollapsed, closeMenu }) => (
     className={({ isActive }) =>
       `flex items-center p-3 rounded-lg transition ${
         isActive
-          ? "bg-blue-500 text-white shadow-lg"
+          ? "bg-blue-600 text-white shadow-lg"
           : "hover:bg-gray-100 text-gray-800"
       }`
     }
