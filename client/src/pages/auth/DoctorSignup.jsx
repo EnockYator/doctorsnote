@@ -159,11 +159,7 @@ function DoctorSignUp() {
   
     setErrors(newErrors);
   
-    // Proceed if no errors
-    if (Object.keys(newErrors).length === 0) {
-      // Move to the next step
-      console.log("Form is valid. Proceeding...");
-    }
+    
   };
 
 
@@ -173,15 +169,15 @@ function DoctorSignUp() {
       case 1:
         return (
           <div className="relative mx-auto w-full max-w-md space-y-6 z-0">
-            <h2 className="text-xl md:text-3xl text-center text-blue-600 font-bold tracking-tight">
+            <h2 className="text-xl md:text-3xl text-center text-blue-700 font-bold tracking-tight">
               Personal Details
             </h2>
 
-            <div className="flex-col space-y-5">
+            <div className="flex-col space-y-4">
             
               {/* User Name */}
             <div className="flex-col space-y-2">
-            <label htmlFor="userName" className="">Full Name</label>
+            <label htmlFor="userName" className="text-gray-700 tracking-tight text-base">Full Name</label>
             <input
               type="text"
               id="userName"
@@ -197,14 +193,14 @@ function DoctorSignUp() {
 
             {/* Gender */}
             <div className="flex-col space-y-2">
-            <label htmlFor="gender">Gender</label>
+            <label htmlFor="gender" className="text-gray-700 tracking-tight text-base">Gender</label>
             <select
               id="gender"
               name="gender"
               value={formData.gender}
               onChange={handleStep2InputChange}
               required
-              className="w-full border bg-gray-100 border-gray-300 rounded-lg p-2 shadow-sm focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="w-full border bg-white border-gray-300 rounded-lg p-2 shadow-sm focus:ring-1 focus:ring-blue-500 focus:outline-none"
             >
               <option value="" disabled>Select Gender</option>
               <option value="male">Male</option>
@@ -216,14 +212,14 @@ function DoctorSignUp() {
 
             {/* Country */}
             <div className="flex-col space-y-2">
-            <label htmlFor="country">Country</label>
+            <label htmlFor="country" className="text-gray-700 tracking-tight text-base">Country</label>
             <select
               id="country"
               name="country"
               value={formData.country}
               onChange={handleStep2InputChange}
               required
-              className="w-full border bg-gray-100 border-gray-300 rounded-lg p-2 shadow-sm focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="w-full border bg-white border-gray-300 rounded-lg p-2 shadow-sm focus:ring-1 focus:ring-blue-500 focus:outline-none"
             >
               <option value="" disabled>
                 Select Country
@@ -238,14 +234,14 @@ function DoctorSignUp() {
 
             {/* City */}
             <div className="flex-col space-y-2">
-            <label htmlFor="city">Country</label>
+            <label htmlFor="city" className="text-gray-700 tracking-tight text-base">City</label>
             <select
               id="city"
               name="city"
               value={formData.city}
               required
               onChange={handleStep2InputChange}
-              className="w-full border bg-gray-100 border-gray-300 rounded-lg p-2 shadow-sm focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="w-full border bg-white border-gray-300 rounded-lg p-2 shadow-sm focus:ring-1 focus:ring-blue-500 focus:outline-none"
             >
               <option value="" disabled>
                 Select City
@@ -292,7 +288,7 @@ function DoctorSignUp() {
         );
       case 2:
         return (
-          <div className="mx-auto w-full max-w-md space-y-6">
+          <div className="mx-auto w-full max-w-md space-y-4">
             <div className="text-center">
               <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight">Professional Details</h1>
             </div>
@@ -307,7 +303,7 @@ function DoctorSignUp() {
         );
       case 3:
         return (
-          <div className="mx-auto w-full max-w-md space-y-6">
+          <div className="mx-auto w-full max-w-md space-y-4">
             <div className="text-center">
               <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight">Account Details</h1>
             </div>
@@ -332,15 +328,15 @@ function DoctorSignUp() {
   };
 
   return (
-    <div className="mx-auto mt-[20px] md:mt-[40px] w-full max-w-md space-y-5">
+    <div className="mx-auto mt-[10px] md:mt-[40px] w-full max-w-md space-y-5">
       {/* Progress Bar */}
-      <div className="flex justify-between items-center px-8 md:px-12">
+      <div className="flex justify-center items-center space-x-8 md:space-x-20">
   {[1, 2, 3].map((number) => (
     <div key={number} className="flex items-center">
       {/* Dot */}
       <div
-        className={`h-4 w-4 rounded-full ${
-          step >= number ? "bg-green-500" : "bg-gray-300"
+        className={`h-4 w-4 md:h-4 md:w-4 rounded-full ${
+          step >= number ? "bg-green-500" : "bg-gray-500"
         }`}
       />
       {/* Line */}

@@ -11,7 +11,7 @@ function AuthLayout() {
                         <h1 className="text-4xl font-extrabold tracking-tight">Welcome to DoctorsNote</h1>
                     </div>
                 </div>
-                <div className="flex flex-1 items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+                <div className="flex flex-1 mt-8 justify-center bg-slate-300 px-6 py-12 sm:px-6 lg:px-8">
                     <Outlet />
                 </div>
             </div>

@@ -37,7 +37,7 @@ const Sidebar = ({ closeMenu }) => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-3 overflow-scroll pb-6">
+      <nav className="flex-1 p-2 md:p-4 space-y-3 overflow-scroll pb-6">
         <NavItem
           to="dashboard"
           icon={HomeIcon}
@@ -142,7 +142,7 @@ const NavItem = ({ to, icon: Icon, label, isCollapsed, closeMenu }) => (
       `flex items-center p-3 rounded-lg transition ${
         isActive
           ? "bg-blue-600 text-white shadow-lg"
-          : "hover:bg-gray-100 text-gray-800"
+          : "hover:bg-gray-300 text-gray-900"
       }`
     }
   >

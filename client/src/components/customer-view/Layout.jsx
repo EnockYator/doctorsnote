@@ -44,7 +44,7 @@ function CustomerLayout() {
         {/* Content and Footer */}
         <div className="flex flex-1 flex-col overflow-y-auto">
           {/* Main Content */}
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-3 md:p-6">
             <Outlet />
           </main>
 

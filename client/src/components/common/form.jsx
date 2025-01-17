@@ -122,7 +122,7 @@ function renderInputsByComponentType(controlItem, formData, setFormData) {
 
 function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText }) {
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-6">
       {formControls.map((controlItem) => (
         <div key={controlItem.name} className="flex flex-col gap-2">
           <Label htmlFor={controlItem.name} className="text-sm font-medium">

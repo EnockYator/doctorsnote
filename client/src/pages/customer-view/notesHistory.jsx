@@ -1,7 +1,8 @@
 function NotesHistory() {
     return (
-      <div>
-        <h1 className="text-2xl font-bold mb-4">Your Medical Notes</h1>
+      <div className="w-full min-h-full flex flex-col"><div>
+        <h1 className="text-lg font-bold text-center mb-4 tracking-tight text-blue-600">Your Medical Notes</h1>
+      </div>
         <ul className="space-y-4">
           <li className="p-4 bg-white shadow-md rounded">
             <h2 className="text-lg font-semibold">Sick Leave Note</h2>
