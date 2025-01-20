@@ -148,8 +148,9 @@ const loginUser = async (req, res) => {
         res.status(200).json({
             success: true,
             message: 'Login successful!',
+            isAuthenticated: true,
             token,
-            userRole: existingUser.role,  // Return the role with the response
+            user: existingUser, // Return the role with the response
         });
     } catch (error) {
         console.error(error);
@@ -162,10 +163,21 @@ const loginUser = async (req, res) => {
 
 // Logout User
 const logoutUser = (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'Logout successful!',
-    });
+    try {
+        res.status(200).json({
+            success: true,
+            isAuthenticated: false,
+            user: null, 
+            message: 'Logout successful!',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'An unexpected error occurred while loging out.',
+        });
+    }
+    
 };
 
 // Auth Middleware

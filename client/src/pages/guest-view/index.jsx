@@ -6,6 +6,10 @@ import MedicalTeamImage from "./../../assets/images/medical-team.jpg"
 import MedicalBgImage from "./../../assets/images/med.jpg"
 // import Loader from "@/components/common/Loader";
 // import { useLoading } from "@/contexts/LoadingContext";
+import SkeletonContainer from "@/components/common/SkeletonContainer";
+import { useSkeleton } from "@/contexts/SkeletonContext";
+import { useEffect } from "react";
+// import style from "./../../../src/App.css";
 
 
 const Home = () => {
@@ -14,6 +18,24 @@ const Home = () => {
     // if (loading) {
     //     return <Loader />;
     // }
+
+
+    const { loadingSections, loadSection } = useSkeleton();
+    useEffect(() => {
+        // Simulating data loading
+        console.log('Calling loadSection for main...');
+        loadSection('main', true);
+        console.log(`SkeletonContext values in Home:`, loadingSections);
+
+
+        const timer2 = setTimeout(() =>{
+            loadSection('main', false);
+        }, 5000);
+
+        return () => {
+            clearTimeout(timer2)
+        }
+    }, [loadSection]);
 
 
     const Feature = ({ title, description, icon }) => (
@@ -37,9 +59,10 @@ const Home = () => {
         <>
 
         {/* Hero Section */}
+        {/* <SkeletonContainer section="main" className="h-72 w-screen"> */}
         <main
-        className="relative mt-[52px] flex flex-1 flex-col items-center text-center pt-12 w-full"
-        style={{
+            className="relative mt-[52px] flex flex-1 flex-col items-center text-center pt-12 w-screen"
+            style={{
             backgroundImage: `url(${MedicalBgImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -76,6 +99,7 @@ const Home = () => {
             </div>
         
             {/* Decorative Image Section */}
+            <SkeletonContainer section="main" className=''>
             <div className="relative z-10 md:w-3/4">
                 <img
                     src={MedicalTeamImage}
@@ -84,7 +108,13 @@ const Home = () => {
                     // onLoad={handleImageLoad}
                 />
             </div>
+            </SkeletonContainer>
         </main>
+        {/* </SkeletonContainer> */}
+
+
+
+        
 
 
             {/* Features Section */}

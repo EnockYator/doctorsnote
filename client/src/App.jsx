@@ -74,7 +74,6 @@ import CustomerSecurity from './pages/customer-view/Security'
 // utils
 import CheckAuth from './components/common/check-auth'
 import { Toaster } from './components/ui/toaster'
-import { useSelector } from 'react-redux';
 
 // guest pages
 import ContactUs from './pages/guest-view/contact'
@@ -88,21 +87,28 @@ import AdminSignUp from './pages/auth/AdminSignup'
 import DoctorSignUp from './pages/auth/DoctorSignup'
 import AuthRegister from './pages/auth/CustomerSignup'
 import AuthLogin from './pages/auth/LoginPage'
+import LogoutPage from './pages/auth/LogoutPage'
 
 //contexts
 // import { useAppLoadingContext } from './contexts'
 // import Loader from './components/common/Loader'
 import { useLoading } from './contexts/LoadingContext'
 import Loader from './components/common/Loader'
+import { useAuth } from './contexts/AuthContext'
+import { useEffect } from 'react'
 
 
 
 
 function App() {
+  const { user, isAuthenticated } = useAuth();
   // Access Redux state to get isAuthenticated and user data
-  //const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const isAuthenticated = true;
-  const user = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    console.log("user: " + user);
+    console.log("isAuthenticated: " + isAuthenticated);
+  }, [user, isAuthenticated])
+  
 
   //const {loading} = useAppLoadingContext();
   const {loading} = useLoading();
@@ -111,10 +117,7 @@ function App() {
         return <Loader />
     }
   
-  console.log(`isAuthenticated: ${isAuthenticated}`);
-  console.log(`user role: ${JSON.stringify(user?.role)}`);
-  console.log(`token: ${JSON.stringify(user?.token)}`);
-  console.log(`username: ${JSON.stringify(user?.username)}`);
+  
 
   return (
       //loading ? <Loader /> :
@@ -141,6 +144,7 @@ function App() {
         <Route path='register' element={<AuthRegister />}></Route>
         <Route path="register-doctor" element={<DoctorSignUp />} />
         <Route path="register-admin" element={<AdminSignUp />} />
+        <Route path="logout" element={<LogoutPage />} />
       </Route>
 
       {/* admin route */}

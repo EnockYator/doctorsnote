@@ -5,7 +5,7 @@ import axios from "axios";
 const initialState = {
     isAuthenticated : false,
     isLoading : false,
-    user : null, // To store user data like role, name, etc.
+    user: null, // To store user data like role, name, etc.
     error: null, // To store any errors
     token: null, // To store JWT token
 };
@@ -68,6 +68,7 @@ export const registerCustomer = createAsyncThunk(
     }
   );
 
+  // Login any registered user
   export const loginUser = createAsyncThunk(
     'auth/login',
     async (formData, thunkAPI) => {
@@ -77,6 +78,7 @@ export const registerCustomer = createAsyncThunk(
           formData,
           { withCredentials: true }
         );
+       
         return response.data; // The message will be in response.data.message
       } catch (error) {
         const errorMessage =
@@ -85,8 +87,27 @@ export const registerCustomer = createAsyncThunk(
       }
     }
   );
-  
-  
+
+  // Logout User
+  export const logoutUser = createAsyncThunk(
+    'auth/logout',
+    async (thunkAPI) => {
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/api/auth/logout',
+          { withCredentials: true }
+        );
+        return response.data; //logged out message
+      } catch (error) {
+        const errorMessage =
+          error.response?.data?.message || "Failed to log out. Please try again.";
+        return thunkAPI.rejectWithValue(errorMessage);
+      }
+    }
+  );
+
+
+  // Redux slice for authentication 
 
 const authSlice = createSlice({
     name: 'auth',
@@ -152,7 +173,41 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload; // Store the error message
                 state.isAuthenticated = false;
+            })
+            // login
+            .addCase(loginUser.pending, (state) => {
+              state.isLoading = true;
+              state.error = null; 
+              state.isAuthenticated = false;
+            })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = action.payload.user; // Update user with response data
+                state.isAuthenticated = true; // Login succeeded
+                state.token = action.payload.token;
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload; // Store the error message
+                state.isAuthenticated = false;
+            })
+            // logout
+            .addCase(logoutUser.pending, (state) => {
+              state.isLoading = true;
+              state.error = null; 
+              state.isAuthenticated = true;
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.isLoading = false;
+                state.user = null; 
+                state.isAuthenticated = false; // Logout succeeded
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload; // Store the error message
+                state.isAuthenticated = true;
             });
+
     },
 });
 

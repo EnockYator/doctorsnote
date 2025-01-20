@@ -168,7 +168,7 @@ function DoctorSignUp() {
     switch (step) {
       case 1:
         return (
-          <div className="relative mx-auto w-full max-w-md space-y-6 z-0">
+          <div className="relative mx-auto w-full max-w-md space-y-4 md:space-y-6 z-0">
             <h2 className="text-xl md:text-3xl text-center text-blue-700 font-bold tracking-tight">
               Personal Details
             </h2>

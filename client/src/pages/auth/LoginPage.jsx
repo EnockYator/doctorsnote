@@ -50,19 +50,23 @@ function AuthLogin() {
       try {
         setIsLoading(true);
         const result = await dispatch(loginUser(formData)).unwrap();
+        
+        // console.log("Login Result:", result); // Check what you're getting back
+        // console.log("User after setAuth:", result.user); // Check what you're setting
+        
+        // Dispatch the setAuth action to update the Redux state
+        dispatch(setAuth({
+          isAuthenticated: result.isAuthenticated,
+          user: result.user,  // User data from the response (including role, etc.)
+          token: result.token, // JWT token from the response
+        }));
+
         toast({
           title: "Success",
           description: result.message, // Message from backend loginUser endpoint  
           className: "bg-toastSuccess text-white max-w-md h-16 z-50",
           duration: 3000,
         });
-
-        // Dispatch the setAuth action to update the Redux state
-        dispatch(setAuth({
-            
-            user: result.user,  // User data from the response (including role, etc.)
-            token: result.token, // JWT token from the response
-      }));
 
         // Redirect based on user role after successful login
         if (result.userRole === "admin") {
@@ -86,10 +90,10 @@ function AuthLogin() {
     }
     
   
-    console.log(formData);
+    // console.log(formData);
 
     return ( 
-        <div className="mx-auto w-full max-w-md space-y-6">
+        <div className="mx-auto mt-14 w-full max-w-md space-y-4 md:space-y-6">
             <div className="text-center">
                 <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight">Sign in to your account</h1>
             </div>

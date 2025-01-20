@@ -78,7 +78,7 @@ function AuthRegister() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-md space-y-6">
+    <div className="mx-auto mt-10 w-full max-w-md space-y-4 md:space-y-6">
       <div className="text-center">
         <h1 className="text-xl md:text-3xl text-blue-700 font-bold tracking-tight">
           Create an Account
