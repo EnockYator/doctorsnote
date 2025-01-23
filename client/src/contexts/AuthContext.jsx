@@ -2,7 +2,7 @@
 /* eslint-disable react-refresh/only-export-components */
 
 import { useDispatch, useSelector } from 'react-redux';
-import { registerCustomer, registerDoctor, registerAdmin, loginUser, setAuth, setUser, logoutUser } from './../store/auth-slice';
+import { registerCustomer, registerDoctor, registerAdmin, loginUser, setAuth, logoutUser } from './../store/auth-slice';
 import { createContext, useContext } from 'react';
 
 
@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
         loginUser: (formData) => dispatch(loginUser(formData)),
         logout: () => dispatch(logoutUser()),
         setAuth: (data) => dispatch(setAuth(data)),
-        setUser: (user) => dispatch(setUser(user)),
     };
 
     // Prevent premature loading

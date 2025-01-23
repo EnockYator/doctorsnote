@@ -1,13 +1,13 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "./../../../axios"; // axiosInstance which allow sending cookies to backend
 
 const initialState = {
     isAuthenticated : false,
     isLoading : false,
     user: null, // To store user data like role, name, etc.
     error: null, // To store any errors
-    token: null, // To store JWT token
+    accessToken: null, // To store JWT token
 };
 
 
@@ -78,6 +78,8 @@ export const registerCustomer = createAsyncThunk(
           formData,
           { withCredentials: true }
         );
+
+        localStorage.setItem('accessToken', response.data.accessToken); // Store token
        
         return response.data; // The message will be in response.data.message
       } catch (error) {
@@ -91,13 +93,14 @@ export const registerCustomer = createAsyncThunk(
   // Logout User
   export const logoutUser = createAsyncThunk(
     'auth/logout',
-    async (thunkAPI) => {
+    async (_, thunkAPI) => {
       try {
         const response = await axios.post(
           'http://localhost:5000/api/auth/logout',
           { withCredentials: true }
         );
-        return response.data; //logged out message
+        localStorage.removeItem('accessToken'); // Clear token
+        return response.data; //logged out message from response.data.message
       } catch (error) {
         const errorMessage =
           error.response?.data?.message || "Failed to log out. Please try again.";
@@ -113,19 +116,18 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+      // On successful login
       setAuth(state, action) {
         state.isAuthenticated = true;
         state.user = action.payload.user; // You can store user data like role here
-        state.token = action.payload.token; // Store token
+        state.accessToken = action.payload.accessToken; // Store token
       },
-      setUser: (state, action) => {
-        state.user = action.payload;
-        state.isAuthenticated = true; 
-      },
-      logout: (state) => {
-          state.user = null;
-          state.isAuthenticated = false;
-      },
+      // On successful logout
+      resetAuth(state) {
+        state.user = null;
+        state.accessToken = null;
+        state.isAuthenticated = false;
+      }
     },
     extraReducers: (builder) => {
         builder
@@ -184,7 +186,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = action.payload.user; // Update user with response data
                 state.isAuthenticated = true; // Login succeeded
-                state.token = action.payload.token;
+                state.accessToken = action.payload.accessToken;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -201,6 +203,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = null; 
                 state.isAuthenticated = false; // Logout succeeded
+                //toast.success('Logged out successfully')
             })
             .addCase(logoutUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -211,7 +214,7 @@ const authSlice = createSlice({
     },
 });
 
-export const { setAuth, setUser, logout } = authSlice.actions;
+export const { setAuth, resetAuth, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 

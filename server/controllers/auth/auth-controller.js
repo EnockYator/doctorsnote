@@ -2,6 +2,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./../../models/User');
 
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
+const ACCESS_TOKEN_EXPIRATION = '15m';
+const REFRESH_TOKEN_EXPIRATION = '7d';
+
+let refreshTokens = []; // Temporary storage, move this to a database for production
+
 // Register Customer
 const registerCustomer = async (req, res) => {
     const { userName, email, password, role } = req.body;
@@ -117,58 +124,77 @@ const registerDoctor = async (req, res) => {
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const existingUser = await User.findOne({ email });
-        if (!existingUser) {
+        const user = await User.findOne({ email });
+        if (!user) {
             return res.status(404).json({
                 success: false,
                 message: 'User with provided email does not exist.',
             });
         }
 
-        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             return res.status(401).json({
                 success: false,
-                message: 'Invalid credentials, check your email or password.',
+                message: 'Invalid credentials.',
             });
         }
 
-        // Check if JWT_SECRET is defined
-        if (!process.env.JWT_SECRET) {
-            console.error("JWT_SECRET is undefined");
+        // Check if ACCESS_TOKEN_SECRET is defined
+        if (!process.env.ACCESS_TOKEN_SECRET) {
+            console.error("ACCESS_TOKEN_SECRET is undefined");
             return res.status(500).json({
                 success: false,
                 message: "Internal server error. Missing JWT secret.",
             });
         }
 
-        // Sign your JWT token
-        const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Generate tokens
+        const accessToken = jwt.sign({ id: user._id, role: user.role }, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRATION });
+        const refreshToken = jwt.sign({ id: user._id }, REFRESH_TOKEN_SECRET, { expiresIn: REFRESH_TOKEN_EXPIRATION });
+        
+        refreshTokens.push(refreshToken); // Save refresh token securely in DB
+
+        // Save refresh token in cookie
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            //sameSite: 'Strict',
+            sameSite: 'None', // Allow cross-origin requests
+        });
 
         res.status(200).json({
             success: true,
             message: 'Login successful!',
             isAuthenticated: true,
-            token,
-            user: existingUser, // Return the role with the response
+            accessToken,
+            user: user, // Return the role with the response
         });
     } catch (error) {
         console.error(error);
         res.status(500).json({
             success: false,
-            message: 'An unexpected error occurred. Please try again later.',
+            message: 'Server error. Please try again later.',
         });
     }
 };
 
 // Logout User
 const logoutUser = (req, res) => {
+    const { refreshToken } = req.cookies;
     try {
+        if (!refreshToken) return res.status(400).json({ message: 'No refresh token provided' });
+        refreshTokens = refreshTokens.filter((token) => token !== refreshToken); // Remove from Databse
+        // Clear the cookie
+        res.clearCookie('refreshToken', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None',
+        });
         res.status(200).json({
             success: true,
             isAuthenticated: false,
-            user: null, 
-            message: 'Logout successful!',
+            message: 'Logged out successful!',
         });
     } catch (error) {
         console.error(error);
@@ -182,8 +208,8 @@ const logoutUser = (req, res) => {
 
 // Auth Middleware
 const authMiddleware = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
+    const accessToken = req.headers.authorization?.split(' ')[1];
+    if (!accessToken) {
         return res.status(401).json({
             success: false,
             message: 'Authentication token missing.',
@@ -191,7 +217,7 @@ const authMiddleware = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
         req.user = decoded;
         next();
     } catch (error) {

@@ -58,7 +58,7 @@ function AuthLogin() {
         dispatch(setAuth({
           isAuthenticated: result.isAuthenticated,
           user: result.user,  // User data from the response (including role, etc.)
-          token: result.token, // JWT token from the response
+          accessToken: result.accessToken, // accessToken from the response
         }));
 
         toast({

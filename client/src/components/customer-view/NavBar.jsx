@@ -6,7 +6,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
-import { logoutUser, setAuth } from "@/store/auth-slice";
+import { logoutUser, resetAuth, setAuth } from "@/store/auth-slice";
 import { useToast } from "@/hooks/use-toast";
 
 function Navbar({ onClickMenuIcon, isDisplayingMenu }) {
@@ -24,16 +24,17 @@ function Navbar({ onClickMenuIcon, isDisplayingMenu }) {
   
     try {
       setIsLoading(true);
-      const result = await dispatch(logoutUser);
+      const result = await dispatch(logoutUser()); 
       
       console.log("Logout Result:", result); // Check what you're getting back
-      console.log("User after setAuth:", result.user); // Check if user is null
       
       // Dispatch the setAuth action to update the Redux state
-      dispatch(setAuth({
-        isAuthenticated: result.isAuthenticated || false,
+      dispatch(resetAuth({
+        isAuthenticated: result.isAuthenticated,
         user: result.user,  // User data from the response (including role, etc.)
       }));
+
+      console.log("User after resetAuth:", result.user); // Check if user is null
 
       toast({
         title: "Success",
