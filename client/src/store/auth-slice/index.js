@@ -100,10 +100,10 @@ export const registerCustomer = createAsyncThunk(
           { withCredentials: true }
         );
         localStorage.removeItem('accessToken'); // Clear token
-        return response.data; //logged out message from response.data.message
+        return response.data?.message; //logged out message from response.data.message
       } catch (error) {
         const errorMessage =
-          error.response?.data?.message || "Failed to log out. Please try again.";
+          error.response?.data || "Failed to log out. Please try again.";
         return thunkAPI.rejectWithValue(errorMessage);
       }
     }

@@ -37,7 +37,7 @@ function Navbar({ onClickMenuIcon, isDisplayingMenu }) {
       console.log("User after resetAuth:", result.user); // Check if user is null
 
       toast({
-        title: "Success",
+        title: "Logged out successfully",
         description: result.message, // Message from backend logoutUser endpoint  
         className: "bg-toastSuccess text-white max-w-md h-16 z-50",
         duration: 3000,

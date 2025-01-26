@@ -8,6 +8,7 @@ import { LoadingProvider } from './contexts/LoadingContext'
 import ErrorBoundary from './components/common/ErrorBoundary'
 import { AuthProvider } from './contexts/AuthContext'
 import { SkeletonProvider } from './contexts/SkeletonContext'
+import { RequestProvider } from './contexts/RequestContext'
 //import { AppLoadingProvider } from './contexts/AppLoadingContext'
 
 
@@ -17,9 +18,12 @@ createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <LoadingProvider>
           <AuthProvider>
-            <SkeletonProvider>
-              <App />
-            </SkeletonProvider>
+            <RequestProvider>
+              <SkeletonProvider>
+               <App />
+              </SkeletonProvider>
+            </RequestProvider>
+            
           </AuthProvider>
         </LoadingProvider>
       </Provider>

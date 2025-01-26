@@ -10,7 +10,7 @@ import { createContext, useContext } from 'react';
 // Create the AuthContext
 const AuthContext = createContext(null);
 
-// AuthProvider to wrap your app or specific components
+// AuthProvider to wrap app or specific components
 export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
 

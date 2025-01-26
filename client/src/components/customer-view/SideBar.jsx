@@ -5,17 +5,17 @@ import {
   HomeIcon,
   ClipboardCheckIcon,
   UserCircle2,
-  Headset,
   HistoryIcon,
   MenuIcon,
-  SettingsIcon,
-  MessageCircle,
-  DollarSign,
-  Files,
-  ChartNoAxesCombined,
-  CircleHelp,
-  Palette,
-  ShieldCheck,
+  // Headset,
+  // SettingsIcon,
+  // MessageCircle,
+  // DollarSign,
+  // Files,
+  // ChartNoAxesCombined,
+  // CircleHelp,
+  // Palette,
+  // ShieldCheck,
 } from 'lucide-react';
 
 const Sidebar = ({ closeMenu }) => {
@@ -66,7 +66,7 @@ const Sidebar = ({ closeMenu }) => {
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
         />
-        <NavItem
+        {/* <NavItem
           to="transaction"
           icon={DollarSign}
           label="Transaction History"
@@ -128,7 +128,7 @@ const Sidebar = ({ closeMenu }) => {
           label="Settings"
           isCollapsed={isCollapsed}
           closeMenu={closeMenu}
-        />
+        /> */}
       </nav>
     </div>
   );

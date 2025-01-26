@@ -6,6 +6,7 @@ const URI = process.env.MONGO_URI;
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const authRouter = require('./routes/auth/auth-routes');
+const requestRouter = require('./routes/request/request-routes');
 
 // Database connection
 mongoose.connect(process.env.MONGO_URI)
@@ -32,7 +33,10 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+// API endpoints / routes
 app.use('/api/auth', authRouter);
+app.use('/api/requests', requestRouter);
 
 // log incoming requests to verify if reaches the server
 app.use((req, res, next) => {

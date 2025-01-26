@@ -95,7 +95,7 @@ import LogoutPage from './pages/auth/LogoutPage'
 import { useLoading } from './contexts/LoadingContext'
 import Loader from './components/common/Loader'
 import { useAuth } from './contexts/AuthContext'
-import { useEffect } from 'react'
+//import { useEffect } from 'react'
 
 
 
@@ -104,10 +104,10 @@ function App() {
   const { user, isAuthenticated } = useAuth();
   // Access Redux state to get isAuthenticated and user data
 
-  useEffect(() => {
-    console.log("user: " + user);
-    console.log("isAuthenticated: " + isAuthenticated);
-  }, [user, isAuthenticated])
+  // useEffect(() => {
+  //   console.log("user: " + user);
+  //   console.log("isAuthenticated: " + isAuthenticated);
+  // }, [user, isAuthenticated])
   
 
   //const {loading} = useAppLoadingContext();

@@ -1,49 +1,117 @@
-import { Button } from "@/components/ui/button";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { requestNote } from "@/store/request-slice";
+
+const initialState = {
+  fullName: "",
+  email: "",
+  healthCareFacility: "",
+  beginningDate: "",
+  returnDate: "",
+  reason: "",
+  acceptedTerms: false,
+  createdAt: new Date().toISOString(),
+};
 
 
 const RequestNote = () => {
-  const [formData, setFormData] = useState(
-    {
-    fullName: "",
-    email: "",
-    facilityName: "",
-    beginningDate: "",
-    returnDate: "",
-    reason: "",
-    acceptTerms: false
-  });
-  const [checked, setChecked] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
+  const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
+  const { toast } = useToast();
 
-  const handleInputChange = (event) => {  
-    // console.log(`Updating ${event.target.name}: ${event.target.value}`);  
-    setFormData((prevData) => ({
-      ...prevData,
-      [event.target.name]: event.target.value
-    }));
-    if(event.target.name === "acceptTerms") 
-      {
-        setChecked(!checked) 
-        setFormData((prevData) => ({...prevData, [event.target.name]: checked}))
-      } 
-    
+  // Basic form validation before submitting
+  function validateForm(data) {
+    if (
+      !formData.fullName ||
+      !formData.email ||
+      !formData.healthCareFacility ||
+      !formData.beginningDate ||
+      !formData.returnDate ||
+      !formData.reason
+    ) {
+      return "All fields are required.";
+    }
+    if (!formData.acceptedTerms) {
+      return "You must accept the terms of service.";
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(data.email)) {
+      return "Please enter a valid email address.";
+    }
+    return null;
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value, type, checked } = event.target;
   
     setFormData((prevData) => ({
-      ...prevData
-    }))
-
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
+  
   useEffect(() => {
     console.log(formData);
   }, [formData]);
 
 
-  const handleSubmit = (event) => {
+  async function onSubmit(event) {
     event.preventDefault();
-    // Send form data to backend for processing
-     console.log(formData);
-  };
+
+    const validationError = validateForm(formData);
+    if (validationError) {
+      toast({
+        title: "Validation Error",
+        description: validationError,
+        className: "bg-toastError text-white max-w-md h-16 z-50",
+        duration: 3000,
+      });
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const result = await dispatch(requestNote(formData)).unwrap();
+
+      // // console.log("Login Result:", result); // Check what you're getting back
+      // // console.log("User after setAuth:", result.user); // Check what you're setting
+      
+      // // Dispatch the setAuth action to update the Redux state
+      // dispatch(setAuth({
+      //   isAuthenticated: result.isAuthenticated,
+      //   user: result.user,  // User data from the response (including role, etc.)
+      //   accessToken: result.accessToken, // accessToken from the response
+      // }));
+
+      toast({
+        title: "Success",
+        description: result.message, // Backend response message
+        className: "bg-toastSuccess text-white max-w-md h-16 z-50",
+        duration: 3000,
+      });
+
+      // Refresh form
+      setFormData(initialState);
+
+    } catch (error) {
+      toast({
+        title: "Failed",
+        description: error.message || "An error occurred while sending your request.",
+        className: "bg-toastError text-white max-w-md h-16 z-50",
+        duration: 3000,
+      });
+    } finally {
+      setIsLoading(false); // Reset loading state
+    }
+  }
+
+  // console.log(formData);
+
   return (
     <div className="w-full min-h-full flex flex-col">
       <div>
@@ -83,9 +151,9 @@ const RequestNote = () => {
             <label htmlFor="facilityName">Name of health care facility:</label>
             <input 
             type="text" 
-            name="facilityName" 
-            value={formData.facilityName || ""}
-            id="facilityName" 
+            name="healthCareFacility" 
+            value={formData.healthCareFacility || ""}
+            id="healthCareFacility" 
             placeholder="Add name of the facilty you want to get the note from" 
             className="border-[1.5px] border-blue-400 rounded-md px-2 py-[6px]"
             onChange={handleInputChange}
@@ -131,9 +199,9 @@ const RequestNote = () => {
           <div className="max-w-md flex justify-center space-x-2">
             <input 
             type="checkbox" 
-            name="acceptTerms" 
-            value={formData.acceptTerms || false}
-            id="acceptTerms"
+            name="acceptedTerms" 
+            checked={formData.acceptedTerms}
+            id="acceptedTerms"
             onChange={handleInputChange}
             required />
             <p>I have read and accept the
@@ -146,10 +214,10 @@ const RequestNote = () => {
           <div>
             <Button
             type="submit"
+            onClick={onSubmit}
             className="w-full px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-900"
-            onClick={handleSubmit}
             >
-              Submit
+              {isLoading ? 'Submitting...' : 'Submit'}
             </Button>
           </div>
         </form>

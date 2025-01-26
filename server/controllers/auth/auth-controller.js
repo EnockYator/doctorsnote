@@ -194,7 +194,7 @@ const logoutUser = (req, res) => {
         res.status(200).json({
             success: true,
             isAuthenticated: false,
-            message: 'Logged out successful!',
+            message: 'Logged out successfully!',
         });
     } catch (error) {
         console.error(error);
